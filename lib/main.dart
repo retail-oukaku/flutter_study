@@ -12,6 +12,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter layout demo',
       home: Home(),
+    theme: ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    ),
     );
   }
 
@@ -63,7 +67,7 @@ class Home extends StatelessWidget {
         if (title == "課題１") {
           Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Kadai1())
+              MaterialPageRoute(builder: (context) => const CountUpPage())
           );
         }
         print(title);
