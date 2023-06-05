@@ -25,11 +25,11 @@ class _ToDoListPageState extends State<ToDoListPage> {
               Navigator.of(context).pop("Back")
             },
           ),
-          title: const Text('課題１：カウントアップ'),
+          title: const Text('課題２：ToDoリスト'),
         ),
         body: const Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
                 'You have pushed the button this many times:',

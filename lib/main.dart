@@ -64,15 +64,15 @@ class Home extends StatelessWidget {
         ),
       ),
       onTap: () {
-        if (title == "課題１") {
-
-        }
-        print(title);
-        if (title == "課題2") {
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ToDoListPage())
-          );
+        switch (title) {
+          case "課題１":
+            break;
+          case "課題2":
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ToDoListPage())
+            );
+            break;
         }
       },
     );
