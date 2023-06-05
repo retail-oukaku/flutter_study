@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'kadai1/Kadai1.dart';
+import 'kadai1/count_up_page.dart';
 
 void main() => runApp(const MyApp());
 
