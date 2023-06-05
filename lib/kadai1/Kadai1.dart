@@ -12,14 +12,13 @@ class _CountUpPageState extends State<CountUpPage> {
   final int maxCounter = 100;
   int _counter = 0;
   void _incrementCounter() {
-    setState(() {
-      if (_counter < maxCounter) {
+    if (_counter < maxCounter) {
+      setState(() {
         _counter ++;
-      } else {
-        showAlertDialog();
-      }
-
-    });
+      });
+    } else {
+      showAlertDialog();
+    }
   }
 
   void showAlertDialog() {
