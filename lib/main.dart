@@ -31,11 +31,11 @@ class Home extends StatelessWidget {
       ),
       body: ListView(
         children:[
-          _menuItem("課題１", const Icon(Icons.settings),context),
-          _menuItem("課題2", const Icon(Icons.map),context),
-          _menuItem("課題3", const Icon(Icons.room),context),
-          _menuItem("課題4", const Icon(Icons.local_shipping),context),
-          _menuItem("課題5", const Icon(Icons.airplanemode_active),context),
+          _menuItem('課題1', const Icon(Icons.settings),context),
+          _menuItem('課題2', const Icon(Icons.map),context),
+          _menuItem('課題3', const Icon(Icons.room),context),
+          _menuItem('課題4', const Icon(Icons.local_shipping),context),
+          _menuItem('課題5', const Icon(Icons.airplanemode_active),context),
         ],
       ),
     );
@@ -64,7 +64,7 @@ class Home extends StatelessWidget {
         ),
       ),
       onTap: () {
-        if (title == "課題１") {
+        if (title == '課題1') {
           Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const CountUpPage())
