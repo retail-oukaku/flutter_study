@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'kadai2/ToDoListPage.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -15,16 +17,20 @@ class MyApp extends StatelessWidget {
         ),
         body: ListView(
           children:[
-            _menuItem("課題１", const Icon(Icons.settings)),
-            _menuItem("課題2", const Icon(Icons.map)),
-            _menuItem("課題3", const Icon(Icons.room)),
-            _menuItem("課題4", const Icon(Icons.local_shipping)),
-            _menuItem("課題5", const Icon(Icons.airplanemode_active)),],
+            _menuItem("課題１", const Icon(Icons.settings),context),
+            _menuItem("課題2", const Icon(Icons.map),context),
+            _menuItem("課題3", const Icon(Icons.room),context),
+            _menuItem("課題4", const Icon(Icons.local_shipping),context),
+            _menuItem("課題5", const Icon(Icons.airplanemode_active),context),],
         ),
+      ),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
     );
   }
-  Widget _menuItem(String title, Icon icon) {
+  Widget _menuItem(String title, Icon icon, BuildContext context) {
     return GestureDetector(
       child: Container(
         padding: const EdgeInsets.all(8.0),
@@ -49,8 +55,14 @@ class MyApp extends StatelessWidget {
       ),
       onTap: () {
         print(title);
+        if (title == "課題2") {
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ToDoListPage())
+          );
+        }
       },
     );
-    
+
   }
 }
