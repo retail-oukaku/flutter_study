@@ -32,22 +32,13 @@ class _CountUpPageState extends State<CountUpPage> {
             content: const SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  Text('Max：100'),
+                  Text('100が上限です'),
                 ],
               ),
             ),
             actions: <Widget>[
               FloatingActionButton(
-                child: const Text('reset'),
-                onPressed: () {
-                  setState(() {
-                    _counter = 0;
-                  });
-                  Navigator.of(context).pop();
-                },
-              ),
-              FloatingActionButton(
-                child: const Text('cancel'),
+                child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
