@@ -40,11 +40,12 @@ class _CountUpPageState extends State<CountUpPage> {
                 child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(context).pop();
-                },
+                  },
               ),
             ],
           );
-        });
+          },
+    );
   }
 
   @override

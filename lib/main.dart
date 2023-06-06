@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter layout demo',
-      home: Home(),
+      home: const Home(),
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
 
 // 画面遷移をする部分のコード
 class Home extends StatelessWidget {
+  const Home({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,34 +45,36 @@ class Home extends StatelessWidget {
   Widget _menuItem(String title, Icon icon,BuildContext context) {
     return GestureDetector(
       child: Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         decoration: const BoxDecoration(
-            border: Border(bottom: BorderSide(width: 1.0,color: Colors.grey))
+            border: Border(bottom: BorderSide(color: Colors.grey)),
         ),
         child: Row (
           children: [
             Container(
-              margin: EdgeInsets.all(10.0),
+              margin: const EdgeInsets.all(10),
               child: icon,
             ),
             Text(
               title,
               style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 18.0
+                  fontSize: 18,
               ),
             ),
           ],
         ),
       ),
-      onTap: () {
+      onTap: () async {
         if (title == '課題1') {
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CountUpPage())
+          await Navigator
+              .of(context)
+              .push(MaterialPageRoute<dynamic>(builder: (BuildContext context) {
+                return const CountUpPage();
+                },
+          ),
           );
         }
-        print(title);
       },
     );
   }
