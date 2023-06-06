@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'kadai2/ToDoListPage.dart';
+import 'kadai2/todo_list_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -65,12 +65,12 @@ class Home extends StatelessWidget {
       ),
       onTap: () {
         switch (title) {
-          case "課題１":
+          case '課題1':
             break;
-          case "課題2":
+          case '課題2':
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ToDoListPage())
+                MaterialPageRoute(builder: (context) => const TodoListPage())
             );
             break;
         }
