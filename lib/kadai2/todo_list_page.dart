@@ -14,6 +14,7 @@ class _TodoListPageState extends State<TodoListPage> {
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
+    super.initState();
     //监听输入改变
     _itemController.addListener((){
       if (_itemController.text.isNotEmpty) {
@@ -44,7 +45,6 @@ class _TodoListPageState extends State<TodoListPage> {
           title: const Text('課題２：ToDoリスト'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             _buildTopWidget(),
             // _buildListWidget(),
@@ -73,13 +73,13 @@ class _TodoListPageState extends State<TodoListPage> {
   }
 
   Widget _buildTopWidget(){
-    Widget titleSection = Container(
+    final Widget titleSection = Container(
       color: Colors.grey[50],
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [
           const SizedBox(
-            width: 10.0,
+            width: 10,
           ),
            Expanded(
             child:Form(
@@ -106,7 +106,7 @@ class _TodoListPageState extends State<TodoListPage> {
 
           ),
           const SizedBox(
-            width: 10.0,
+            width: 10,
           ),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
@@ -116,7 +116,7 @@ class _TodoListPageState extends State<TodoListPage> {
             ),
             onPressed: () {
               _itemFocusNode.unfocus();
-              if ((_formKey.currentState as FormState).validate()) {
+              if ((_formKey.currentState!).validate()) {
                 debugPrint(_itemController.text);
               } else {
                 debugPrint('invalid');
@@ -132,7 +132,7 @@ class _TodoListPageState extends State<TodoListPage> {
   }
 
   Widget _buildListWidget(){
-    Widget listWidget = ListView(
+    final Widget listWidget = ListView(
         children: const [
           Text(
             'Please add some item in your todolist',
