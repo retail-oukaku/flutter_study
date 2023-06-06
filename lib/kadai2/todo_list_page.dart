@@ -13,6 +13,9 @@ class _TodoListPageState extends State<TodoListPage> {
   final _itemController = TextEditingController();
   final _itemFocusNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
+  final _forDialogKey = GlobalKey<FormState>();
+  final _dialogController = TextEditingController();
+  final _dialogFocusNode = FocusNode();
   @override
   void initState() {
     super.initState();
@@ -65,13 +68,16 @@ class _TodoListPageState extends State<TodoListPage> {
     );
   }
 
-  Widget _buildFormWidget(){
+  Widget _buildFormWidget(
+      GlobalKey formKey,
+      TextEditingController controller,
+      FocusNode focusNode,){
     return Form(
-      key: _formKey,
+      key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: TextFormField(
-        controller: _itemController,
-        focusNode : _itemFocusNode,
+        controller: controller,
+        focusNode : focusNode,
         autofocus: true,
         decoration: const InputDecoration(
           labelText:'Item',
@@ -81,7 +87,7 @@ class _TodoListPageState extends State<TodoListPage> {
           if (v!.trim().isEmpty) {
             return '入力してださい';
           }
-          if (v!.length >= 10) {
+          if (v.length >= 10) {
             return '項目が長すぎます。';
           }
           if (_items.contains(v)) {
@@ -100,7 +106,7 @@ class _TodoListPageState extends State<TodoListPage> {
           width: 10,
         ),
         Expanded(
-          child:_buildFormWidget(),
+          child:_buildFormWidget(_formKey,_itemController,_itemFocusNode),
         ),
         const SizedBox(
           width: 10,
@@ -159,7 +165,9 @@ class _TodoListPageState extends State<TodoListPage> {
           width: 10,
         ),
         IconButton(
-          onPressed:_showAlertDialog,
+          onPressed:() {
+            _showAlertDialog(itemText,index);
+          },
           icon:const Icon(Icons.edit),
         ),
         IconButton(
@@ -174,23 +182,33 @@ class _TodoListPageState extends State<TodoListPage> {
     );
   }
 
-  void _showAlertDialog() {
+  void _showAlertDialog(String item,int index) {
+    _dialogController.text = item;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Warning'),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('100が上限です'),
-              ],
+          content: SingleChildScrollView(
+            child: _buildFormWidget(
+                _forDialogKey,
+                _dialogController,
+                _dialogFocusNode,
             ),
           ),
           actions: <Widget>[
             TextButton(
                 onPressed:  () {
+                  _dialogFocusNode.unfocus();
+                  if ((_forDialogKey.currentState!).validate()) {
+                    setState(() {
+                      _items[index] = _dialogController.text;
+                      _dialogController.clear();
+                    });
+                  } else {
+                    debugPrint('invalid');
+                  }
                   Navigator.of(context).pop();
                 },
                 child: const Text('OK'),
