@@ -19,15 +19,6 @@ class _TodoListPageState extends State<TodoListPage> {
   @override
   void initState() {
     super.initState();
-    //监听输入改变
-    _itemController.addListener((){
-      if (_itemController.text.isNotEmpty) {
-
-      } else {
-
-      }
-      debugPrint(_itemController.text);
-    });
   }
 
 
