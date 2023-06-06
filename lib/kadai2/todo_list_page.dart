@@ -9,6 +9,7 @@ class TodoListPage extends StatefulWidget {
 }
 
 class _TodoListPageState extends State<TodoListPage> {
+  final _items = <String>[];
   final _itemController = TextEditingController();
   final _itemFocusNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
@@ -25,6 +26,7 @@ class _TodoListPageState extends State<TodoListPage> {
       debugPrint(_itemController.text);
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,101 +46,164 @@ class _TodoListPageState extends State<TodoListPage> {
           ),
           title: const Text('課題２：ToDoリスト'),
         ),
-        body: Column(
-          children: <Widget>[
-            _buildTopWidget(),
-            // _buildListWidget(),
-            const Text(
-              'Please add some item in your todolist',
-            ),
-            Row(
-              children: [
-                const Text(
-                  'Item：',
-                ),
-                IconButton(
-                  alignment: Alignment.centerRight,
-                  icon: const Icon(Icons.add),
-                  onPressed: () => {
-                    debugPrint('test onPressed')
-                  },
-                ),
-              ],
-            ),
-          ],
+        body: Container(
+          color: Colors.grey[50],
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: <Widget>[
+              _buildTopWidget(),
+              const SizedBox(
+                height: 18,
+              ),
+              Expanded(
+                child: _buildListWidget(),
+              ),
+            ],
+          ),
         ),
+      ),
+    );
+  }
 
+  Widget _buildFormWidget(){
+    return Form(
+      key: _formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: TextFormField(
+        controller: _itemController,
+        focusNode : _itemFocusNode,
+        autofocus: true,
+        decoration: const InputDecoration(
+          labelText:'Item',
+          hintText: '項目',
+        ),
+        validator: (v) {
+          if (v!.trim().isEmpty) {
+            return '入力してださい';
+          }
+          if (v!.length >= 10) {
+            return '項目が長すぎます。';
+          }
+          if (_items.contains(v)) {
+            return '同じ項目が既に存在します';
+          }
+          return null;
+        },
       ),
     );
   }
 
   Widget _buildTopWidget(){
-    final Widget titleSection = Container(
-      color: Colors.grey[50],
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          const SizedBox(
-            width: 10,
+    return Row(
+      children: [
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded(
+          child:_buildFormWidget(),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            backgroundColor: Theme.of(context).colorScheme.primary,
           ),
-           Expanded(
-            child:Form(
-              key: _formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: TextFormField(
-                  controller: _itemController,
-                  focusNode : _itemFocusNode,
-                  autofocus: true,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText:'Item',
-                    hintText: '項目',
-                  ),
-                  validator: (v) {
-                    if (v!.trim().isNotEmpty) {
-                      return null;
-                    }
-
-                    return '入力してださい';
-                  },
-                ),
-            ),
-
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              disabledForegroundColor:Colors.grey[500],
-            ),
-            onPressed: () {
-              _itemFocusNode.unfocus();
-              if ((_formKey.currentState!).validate()) {
-                debugPrint(_itemController.text);
-              } else {
-                debugPrint('invalid');
-              }
-            },
-            icon: const Icon(Icons.add),
-            label: const Text('追加'),
-          )
-        ],
-      ),
+          onPressed: () {
+            _itemFocusNode.unfocus();
+            if ((_formKey.currentState!).validate()) {
+              setState(() {
+                _items.add(_itemController.text);
+                _itemController.clear();
+              });
+            } else {
+              debugPrint('invalid');
+            }
+          },
+          icon: const Icon(Icons.add),
+          label: const Text('追加'),
+        )
+      ],
     );
-    return titleSection;
   }
 
   Widget _buildListWidget(){
-    final Widget listWidget = ListView(
-        children: const [
-          Text(
-            'Please add some item in your todolist',
-          ),
-        ],
+    return ListView.separated(
+      shrinkWrap: true,
+      itemCount: _items.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _buildListCellWidget(index,_items[index]);
+        },
+      separatorBuilder: (BuildContext context, int index) {
+        return const Divider(height: 36,);
+        },
     );
-    return listWidget;
+  }
+
+  Widget _buildListCellWidget(int index,String itemText){
+    return Row(
+      children: [
+        const SizedBox(
+          width: 10,
+        ),
+        Text((index + 1).toString()),
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded (
+          flex: 2,
+          child: Text(itemText),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        IconButton(
+          onPressed:_showAlertDialog,
+          icon:const Icon(Icons.edit),
+        ),
+        IconButton(
+            onPressed:() {
+              setState(() {
+                _items.removeAt(index);
+              });
+            },
+            icon:const Icon(Icons.delete),
+        ),
+      ],
+    );
+  }
+
+  void _showAlertDialog() {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Warning'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('100が上限です'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+                onPressed:  () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+            ),
+            TextButton(
+              onPressed:  () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('cancel'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
