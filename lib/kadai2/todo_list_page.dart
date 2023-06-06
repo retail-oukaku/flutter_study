@@ -142,7 +142,7 @@ class _TodoListPageState extends State<TodoListPage> {
         return _buildListCellWidget(index,_items[index]);
         },
       separatorBuilder: (BuildContext context, int index) {
-        return const Divider(height: 36,);
+        return const Divider(height: 30,);
         },
     );
   }
