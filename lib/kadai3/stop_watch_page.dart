@@ -3,24 +3,19 @@ import 'package:flutter/material.dart';
 
 class StopWatchPage extends StatefulWidget {
   const StopWatchPage({super.key});
-
   @override
   State<StopWatchPage> createState() => _StopWatchPageState();
 }
 
 class _StopWatchPageState extends State<StopWatchPage> {
   final _stopWatch = Stopwatch();
-  int _counter = 0;
+  String _counter = '00:00.00';
+  bool _isRunning = false;
+  // late
   final _items = <String>[];
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  void dispose(){
-
-    super.dispose();
   }
 
   @override
@@ -40,14 +35,15 @@ class _StopWatchPageState extends State<StopWatchPage> {
           ),
           title: const Text('課題３：ストップウォッチ'),
         ),
-        body: Container(
-          color: Colors.grey[50],
+        body: Container (
           padding: const EdgeInsets.all(16),
+          alignment: Alignment.topCenter,
           child: Column(
-            children: <Widget>[
+            children: [
+              Text(_counter,),
               _buildTopWidget(),
               const SizedBox(
-                height: 18,
+                height: 10,
               ),
               Expanded(
                 child: _buildListWidget(),
@@ -60,43 +56,26 @@ class _StopWatchPageState extends State<StopWatchPage> {
   }
 
   Widget _buildTopWidget(){
-    return Column(
+    final Widget startButton = TextButton(
+      onPressed: () {
+        _isRunning?_stopStopWatch():_startStopWatch();
+        },
+      child:_isRunning? const Text('STOP') : const Text('START'),
+    );
+
+    final lapButton = TextButton(
+      onPressed: () {
+        _isRunning?_lapStopWatch():_resetStopWatch();
+        },
+      child: _isRunning? const Text('LAP') : const Text('RESET'),
+    );
+    return  Row(
       children: [
-        const SizedBox(
-          width: 10,
+        Expanded(
+          child: startButton,
         ),
-        Text(
-          _stopWatch.elapsedMilliseconds.toString(),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Row(
-          children: [
-            const SizedBox(
-              width: 10,
-            ),
-            TextButton(onPressed: () {
-              startStopWatch();
-            },
-              child: const Text('START'),
-            ),
-            TextButton(onPressed: () {
-              stopWatch();
-            },
-              child: const Text('STOP'),
-            ),
-            TextButton(onPressed: () {
-              resetStopWatch();
-            },
-              child: const Text('RESET'),
-            ),
-            TextButton(onPressed: () {
-              lapStopWatch();
-            },
-              child: const Text('LAP'),
-            ),
-          ],
+        Expanded(
+          child:lapButton,
         ),
       ],
     );
@@ -119,46 +98,67 @@ class _StopWatchPageState extends State<StopWatchPage> {
   Widget _buildListCellWidget(int index,String? itemText){
     return Row(
       children: [
-        const SizedBox(
-          width: 10,
-        ),
-        Text((index + 1).toString()),
-        const SizedBox(
-          width: 10,
+        Expanded(
+          child: Text(
+            (index + 1).toString(),
+            textAlign: TextAlign.center,
+          ),
         ),
         Expanded (
-          flex: 2,
-          child: Text(itemText!),
+          child: Text(
+            itemText!,
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );
   }
 
-  void startStopWatch(){
+  void _startStopWatch(){
     _stopWatch.start();
-    _counter = _stopWatch.elapsedMilliseconds;
-    // change button's type text
+    setState(() {
+      _isRunning = true;
+    });
+    _updateElapsedTime();
   }
-  void stopWatch(){
-    if (_stopWatch.isRunning) {
-      _stopWatch.stop();
-    }
-    // change button's type text
+  void _stopStopWatch(){
+    setState(() {
+      _isRunning = false;
+    });
+    _stopWatch.stop();
   }
-  void resetStopWatch(){
+  void _resetStopWatch(){
     if (_stopWatch.isRunning) {
       _stopWatch.stop();
     }
     _stopWatch.reset();
-    setState(_items.clear);
+    setState(() {
+      _items.clear();
+      _counter = _getTime(_stopWatch.elapsed);
+    });
   }
-  void lapStopWatch(){
+  void _lapStopWatch(){
     if (!_stopWatch.isRunning) {
       return;
     }
-    final lap = _stopWatch.elapsedMilliseconds;
     setState(() {
-      _items.add(lap.toString());
+      _items.add(_getTime(_stopWatch.elapsed));
+    });
+  }
+
+  String _getTime(Duration elapsed){
+    final str = elapsed.toString();
+    return str.substring(0,str.length - 4);
+  }
+
+  void _updateElapsedTime() {
+    Future.delayed(const Duration(milliseconds: 10), () {
+      if (_stopWatch.isRunning) {
+        setState(() {
+          _counter = _getTime(_stopWatch.elapsed);
+        });
+        _updateElapsedTime();
+      }
     });
   }
 }
