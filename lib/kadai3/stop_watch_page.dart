@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:stop_watch_timer/stop_watch_timer.dart';
-
 class StopWatchPage extends StatefulWidget {
   const StopWatchPage({super.key});
 
@@ -11,7 +9,8 @@ class StopWatchPage extends StatefulWidget {
 }
 
 class _StopWatchPageState extends State<StopWatchPage> {
-  final _stopWatchTimer = StopWatchTimer();
+  final _stopWatch = Stopwatch();
+  final _items = <String>[];
   @override
   void initState() {
     super.initState();
@@ -19,7 +18,7 @@ class _StopWatchPageState extends State<StopWatchPage> {
 
   @override
   void dispose(){
-    _stopWatchTimer.dispose();
+
     super.dispose();
   }
 
@@ -92,28 +91,14 @@ class _StopWatchPageState extends State<StopWatchPage> {
 
   // 非同期で取得が必要です。streamで
   Widget _buildListWidget()  {
-    return StreamBuilder<List<StopWatchRecord>>(
-      stream: _stopWatchTimer.records,
-      initialData: const [],
-      builder: (BuildContext context,
-          AsyncSnapshot<List<StopWatchRecord>> snapshot,) {
-        if (snapshot.hasError) {
-          return const Text('error');
-        }
-        final value = snapshot.data;
-        if (value!.isEmpty) {
-          return const Text('data is empty');
-        }
-        return ListView.separated(
-          shrinkWrap: true,
-          itemCount: value.length,
-          itemBuilder: (BuildContext context, int index) {
-            return _buildListCellWidget(index, value[index].displayTime);
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return const Divider(height: 20,);
-          },
-        );
+    return ListView.separated(
+      shrinkWrap: true,
+      itemCount: _items.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _buildListCellWidget(index, _items[index]);
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return const Divider(height: 20,);
       },
     );
   }
@@ -137,21 +122,22 @@ class _StopWatchPageState extends State<StopWatchPage> {
   }
 
   void startStopWatch(){
-    _stopWatchTimer.onStartTimer();
+    _stopWatch.start();
     // change button's type text
   }
   void stopWatch(){
-    _stopWatchTimer.onStopTimer();
+    _stopWatch.stop();
     // change button's type text
   }
   void resetStopWatch(){
-    _stopWatchTimer.onResetTimer();
+    _stopWatch.reset();
     // change button's type text
     // clear the rap list
 
   }
   void rapStopWatch(){
-    _stopWatchTimer.onAddLap();
+    final lap = _stopWatch.elapsedTicks;
+
     // get current time
     // add time in rap list
   }
