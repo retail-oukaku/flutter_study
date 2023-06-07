@@ -60,14 +60,14 @@ class _StopWatchPageState extends State<StopWatchPage> {
       onPressed: () {
         _isRunning?_stopStopWatch():_startStopWatch();
         },
-      child:_isRunning? const Text('STOP') : const Text('START'),
+      child:_isRunning? const Text('停止') : const Text('開始'),
     );
 
     final lapButton = TextButton(
       onPressed: () {
         _isRunning?_lapStopWatch():_resetStopWatch();
         },
-      child: _isRunning? const Text('LAP') : const Text('RESET'),
+      child: _isRunning? const Text('ラップ') : const Text('リセット'),
     );
     return  Row(
       children: [
