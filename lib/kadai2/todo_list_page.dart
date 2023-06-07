@@ -47,7 +47,7 @@ class _TodoListPageState extends State<TodoListPage> {
             children: <Widget>[
               _buildTopWidget(),
               const SizedBox(
-                height: 18,
+                height: 16,
               ),
               Expanded(
                 child: _buildListWidget(),
@@ -94,13 +94,13 @@ class _TodoListPageState extends State<TodoListPage> {
     return Row(
       children: [
         const SizedBox(
-          width: 10,
+          width: 8,
         ),
         Expanded(
           child:_buildFormWidget(_formKey,_itemController,_itemFocusNode),
         ),
         const SizedBox(
-          width: 10,
+          width: 8,
         ),
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
@@ -133,7 +133,7 @@ class _TodoListPageState extends State<TodoListPage> {
         return _buildListCellWidget(index,_items[index]);
         },
       separatorBuilder: (BuildContext context, int index) {
-        return const Divider(height: 30,);
+        return const Divider(height: 24,);
         },
     );
   }
@@ -142,18 +142,18 @@ class _TodoListPageState extends State<TodoListPage> {
     return Row(
       children: [
         const SizedBox(
-          width: 10,
+          width: 8,
         ),
         Text((index + 1).toString()),
         const SizedBox(
-          width: 10,
+          width: 16,
         ),
         Expanded (
           flex: 2,
           child: Text(itemText),
         ),
         const SizedBox(
-          width: 10,
+          width: 8,
         ),
         IconButton(
           onPressed:() {
