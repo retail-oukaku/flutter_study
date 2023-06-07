@@ -35,20 +35,22 @@ class _StopWatchPageState extends State<StopWatchPage> {
           ),
           title: const Text('課題３：ストップウォッチ'),
         ),
-        body: Container (
-          padding: const EdgeInsets.all(16),
-          alignment: Alignment.topCenter,
-          child: Column(
-            children: [
-              Text(_counter,),
-              _buildTopWidget(),
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: _buildListWidget(),
-              ),
-            ],
+        body:SafeArea(
+          child: Container (
+            padding: const EdgeInsets.all(16),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Text(_counter,),
+                _buildTopWidget(),
+                const SizedBox(
+                  height: 10,
+                ),
+                Expanded(
+                  child: _buildListWidget(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
