@@ -10,6 +10,7 @@ class StopWatchPage extends StatefulWidget {
 
 class _StopWatchPageState extends State<StopWatchPage> {
   final _stopWatch = Stopwatch();
+  int _counter = 0;
   final _items = <String>[];
   @override
   void initState() {
@@ -64,7 +65,9 @@ class _StopWatchPageState extends State<StopWatchPage> {
         const SizedBox(
           width: 10,
         ),
-        const Text('00:00.88'),
+        Text(
+          _stopWatch.elapsedMilliseconds.toString(),
+        ),
         const SizedBox(
           height: 10,
         ),
@@ -74,14 +77,24 @@ class _StopWatchPageState extends State<StopWatchPage> {
               width: 10,
             ),
             TextButton(onPressed: () {
-
+              startStopWatch();
             },
-              child: const Text('data'),
+              child: const Text('START'),
             ),
             TextButton(onPressed: () {
-
+              stopWatch();
             },
-              child: const Text('data1111'),
+              child: const Text('STOP'),
+            ),
+            TextButton(onPressed: () {
+              resetStopWatch();
+            },
+              child: const Text('RESET'),
+            ),
+            TextButton(onPressed: () {
+              lapStopWatch();
+            },
+              child: const Text('LAP'),
             ),
           ],
         ),
@@ -123,22 +136,29 @@ class _StopWatchPageState extends State<StopWatchPage> {
 
   void startStopWatch(){
     _stopWatch.start();
+    _counter = _stopWatch.elapsedMilliseconds;
     // change button's type text
   }
   void stopWatch(){
-    _stopWatch.stop();
+    if (_stopWatch.isRunning) {
+      _stopWatch.stop();
+    }
     // change button's type text
   }
   void resetStopWatch(){
+    if (_stopWatch.isRunning) {
+      _stopWatch.stop();
+    }
     _stopWatch.reset();
-    // change button's type text
-    // clear the rap list
-
+    setState(_items.clear);
   }
-  void rapStopWatch(){
-    final lap = _stopWatch.elapsedTicks;
-
-    // get current time
-    // add time in rap list
+  void lapStopWatch(){
+    if (!_stopWatch.isRunning) {
+      return;
+    }
+    final lap = _stopWatch.elapsedMilliseconds;
+    setState(() {
+      _items.add(lap.toString());
+    });
   }
 }
