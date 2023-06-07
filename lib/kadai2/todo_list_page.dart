@@ -40,21 +40,23 @@ class _TodoListPageState extends State<TodoListPage> {
           ),
           title: const Text('課題２：ToDoリスト'),
         ),
-        body: Container(
-          color: Colors.grey[50],
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: <Widget>[
-              _buildTopWidget(),
-              const SizedBox(
-                height: 16,
-              ),
-              Expanded(
-                child: _buildListWidget(),
-              ),
-            ],
+        body:SafeArea(
+          child: Container(
+            color: Colors.grey[50],
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: <Widget>[
+                _buildTopWidget(),
+                const SizedBox(
+                  height: 16,
+                ),
+                Expanded(
+                  child: _buildListWidget(),
+                ),
+              ],
+            ),
           ),
-        ),
+        )
       ),
     );
   }
