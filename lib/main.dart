@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'kadai3/stop_watch_page.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -62,11 +64,16 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () {
-        if (title == "課題１") {
-
-        }
-        print(title);
+      onTap: () async {
+        await
+        Navigator
+            .of(context)
+            .push(MaterialPageRoute<dynamic>(builder: (BuildContext context) {
+          if (title == '課題3') {
+            return const StopWatchPage();
+          }
+          return const StopWatchPage();
+        },),);
       },
     );
   }
