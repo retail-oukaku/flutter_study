@@ -21,6 +21,14 @@ class _TodoListPageState extends State<TodoListPage> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    _itemFocusNode.dispose();
+    _itemController.dispose();
+    _dialogController.dispose();
+    _dialogFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
