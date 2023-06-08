@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_web_test_project/kadai4/product_detail_page.dart';
 
 class BarcodeScanPage extends StatefulWidget {
   const BarcodeScanPage({super.key});
@@ -9,45 +10,13 @@ class BarcodeScanPage extends StatefulWidget {
 }
 
 class _BarcodeScanPageState extends State<BarcodeScanPage> {
-  final int maxCounter = 100;
-  int _counter = 0;
   void _incrementCounter() {
-    if (_counter < maxCounter) {
-      setState(() {
-        _counter ++;
-      });
-    } else {
-      showAlertDialog();
-    }
-  }
-
-  void showAlertDialog() {
-    showDialog<void>(
-      context: context,
-      barrierDismissible: false,
+    Navigator.of(context).push(MaterialPageRoute<dynamic>(
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Warning'),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('100が上限です'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            FloatingActionButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+        return const ProductDetailsPage();
+        },
+    ),);
   }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -64,18 +33,14 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
               Navigator.of(context).pop('Back')
             },
           ),
-          title: const Text('課題１：カウントアップ'),
+          title: const Text('課題４：バーコードスキャン'),
         ),
-        body: Center(
+        body: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
               Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headlineMedium,
+                'You have pushed the button this many times:',
               ),
             ],
           ),
