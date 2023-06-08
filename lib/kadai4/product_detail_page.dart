@@ -9,6 +9,12 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  late final WebViewController _controller;
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +29,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
 
   Widget _buildWebView(){
-    return const Text('data')
+    return WebViewWidget(
+      controller: WebViewController()
+        ..loadRequest(Uri.parse('https://www.google.com/')),
+    );
   }
 }
