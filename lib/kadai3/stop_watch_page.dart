@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class StopWatchPage extends StatefulWidget {
@@ -41,10 +43,16 @@ class _StopWatchPageState extends State<StopWatchPage> {
             alignment: Alignment.topCenter,
             child: Column(
               children: [
-                Text(_counter,),
+                Text(
+                  _counter,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontFeatures: [FontFeature.tabularFigures()],
+                  ),
+                ),
                 _buildTopWidget(),
                 const SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
                 Expanded(
                   child: _buildListWidget(),
@@ -92,7 +100,7 @@ class _StopWatchPageState extends State<StopWatchPage> {
         return _buildListCellWidget(index, _items[index]);
       },
       separatorBuilder: (BuildContext context, int index) {
-        return const Divider(height: 20,);
+        return const Divider(height: 24,);
       },
     );
   }
