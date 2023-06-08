@@ -49,19 +49,24 @@ class _TodoListPageState extends State<TodoListPage> {
           title: const Text('課題２：ToDoリスト'),
         ),
         body:SafeArea(
-          child: Container(
-            color: Colors.grey[50],
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: <Widget>[
-                _buildTopWidget(),
-                const SizedBox(
-                  height: 16,
-                ),
-                Expanded(
-                  child: _buildListWidget(),
-                ),
-              ],
+          child:GestureDetector(
+            onTap: () {
+              hideKeyboard(context);
+            },
+            child: Container(
+              color: Colors.grey[50],
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: <Widget>[
+                  _buildTopWidget(),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Expanded(
+                    child: _buildListWidget(),
+                  ),
+                ],
+              ),
             ),
           ),
         )
@@ -224,5 +229,12 @@ class _TodoListPageState extends State<TodoListPage> {
         );
       },
     );
+  }
+
+  void hideKeyboard(BuildContext context) {
+    final currentFocus = FocusScope.of(context);
+    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+      FocusManager.instance.primaryFocus?.unfocus();
+    }
   }
 }
