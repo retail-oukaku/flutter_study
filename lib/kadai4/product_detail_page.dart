@@ -9,10 +9,16 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  late final WebViewController _controller;
   @override
   void initState() {
     super.initState();
+    _loadWebViewController();
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+
   }
 
   @override
@@ -27,10 +33,41 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     );
   }
 
+  WebViewController _loadWebViewController(){
+    final controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(Colors.lightBlue[50]!)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+            onProgress: (int progress) {
+              debugPrint('WebView is loading (progress : $progress%)');
+            },
+            onPageStarted: (String url) {
+              debugPrint('Page started loading: $url');
+            },
+            onPageFinished: (String url) {
+              debugPrint('Page finished loading: $url');
+            },
+            onWebResourceError: (WebResourceError error) {
+              debugPrint('Page load error: $error');
+            },
+        ),
+      )
+      ..addJavaScriptChannel(
+        'Toaster',
+        onMessageReceived: (JavaScriptMessage message) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message.message)),
+          );
+        },
+      );
+    return controller;
+  }
+
 
   Widget _buildWebView(){
     return WebViewWidget(
-      controller: WebViewController()
+      controller: _loadWebViewController()
         ..loadRequest(Uri.parse('https://www.google.com/')),
     );
   }
