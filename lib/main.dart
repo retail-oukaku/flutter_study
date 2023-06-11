@@ -67,9 +67,9 @@ class Home extends StatelessWidget {
         ),
       ),
       onTap: () async {
-        await Navigator
-            .of(context)
-            .push(MaterialPageRoute<dynamic>(builder: (BuildContext context) {
+        await Navigator.of(context).push(
+          MaterialPageRoute<dynamic>(
+            builder: (BuildContext context) {
               switch(title) {
                 case '課題1':
                   return const CountUpPage();
@@ -78,8 +78,10 @@ class Home extends StatelessWidget {
                 default:
                   return const CountUpPage();
               }
-              },),);
-        },
+            },
+          ),
+        );
+      },
     );
   }
 }
