@@ -105,7 +105,7 @@ class _StopWatchPageState extends State<StopWatchPage> {
     );
   }
 
-  Widget _buildListCellWidget(int index,String? itemText){
+  Widget _buildListCellWidget(int index, String? itemText){
     return Row(
       children: [
         Expanded(
