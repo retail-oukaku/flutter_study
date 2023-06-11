@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'kadai1/count_up_page.dart';
 
+import 'kadai2/todo_list_page.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -18,7 +20,6 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-
 }
 
 // 画面遷移をする部分のコード
@@ -66,15 +67,20 @@ class Home extends StatelessWidget {
         ),
       ),
       onTap: () async {
-        if (title == '課題1') {
-          await Navigator
-              .of(context)
-              .push(MaterialPageRoute<dynamic>(builder: (BuildContext context) {
-                return const CountUpPage();
-                },
+        await Navigator.of(context).push(
+          MaterialPageRoute<dynamic>(
+            builder: (BuildContext context) {
+              switch(title) {
+                case '課題1':
+                  return const CountUpPage();
+                case '課題2':
+                  return const TodoListPage();
+                default:
+                  return const CountUpPage();
+              }
+            },
           ),
-          );
-        }
+        );
       },
     );
   }
