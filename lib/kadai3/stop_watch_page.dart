@@ -66,26 +66,23 @@ class _StopWatchPageState extends State<StopWatchPage> {
   }
 
   Widget _buildTopWidget(){
-    final Widget startButton = TextButton(
-      onPressed: () {
-        _isRunning?_stopStopWatch():_startStopWatch();
-        },
-      child:_isRunning? const Text('停止') : const Text('開始'),
-    );
-
-    final lapButton = TextButton(
-      onPressed: () {
-        _isRunning?_lapStopWatch():_resetStopWatch();
-        },
-      child: _isRunning? const Text('ラップ') : const Text('リセット'),
-    );
     return  Row(
       children: [
         Expanded(
-          child: startButton,
+          child: TextButton(
+            onPressed: () {
+              _isRunning?_stopStopWatch():_startStopWatch();
+            },
+            child:_isRunning? const Text('停止') : const Text('開始'),
+          ),
         ),
         Expanded(
-          child:lapButton,
+          child:TextButton(
+            onPressed: () {
+              _isRunning?_lapStopWatch():_resetStopWatch();
+            },
+            child: _isRunning? const Text('ラップ') : const Text('リセット'),
+          ),
         ),
       ],
     );
