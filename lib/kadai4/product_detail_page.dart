@@ -34,7 +34,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   }
 
   WebViewController _loadWebViewController(){
-    final controller = WebViewController()
+    return WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(Colors.lightBlue[50]!)
       ..setNavigationDelegate(
@@ -61,7 +61,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           );
         },
       );
-    return controller;
   }
 
 
