@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ProductDetailsPage extends StatefulWidget {
-  const ProductDetailsPage({super.key});
+  const ProductDetailsPage({super.key, required this.url});
 
+  final String url;
   @override
   State<ProductDetailsPage> createState() => _ProductDetailsPageState();
 }
@@ -63,11 +64,13 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
       );
   }
 
-
   Widget _buildWebView(){
+
+    // final url = 'https://www.amazon.co.jp/dp/ISBN4-87424-354-1';
+
     return WebViewWidget(
       controller: _loadWebViewController()
-        ..loadRequest(Uri.parse('https://www.google.com/')),
+        ..loadRequest(Uri.parse(widget.url)),
     );
   }
 }

@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_web_test_project/kadai4/product_detail_page.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_web_test_project/extensions/string_extension.dart';
+import 'package:flutter_web_test_project/kadai4/product_detail_page.dart';
 
 class BarcodeScanPage extends StatefulWidget {
   const BarcodeScanPage({super.key});
@@ -21,8 +22,8 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
 
   Future<void> startBarcodeScanStream() async {
     FlutterBarcodeScanner.getBarcodeStreamReceiver(
-        '#ff6666', 'Cancel', true, ScanMode.BARCODE)!
-        .listen((barcode) => print(barcode));
+        '#ff6666', 'Cancel', true, ScanMode.BARCODE,)!
+        .listen((barcode) => debugPrint(barcode is String ? barcode : ''));
   }
 
   Future<void> scanQR() async {
@@ -30,8 +31,8 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.QR);
-      print(barcodeScanRes);
+          '#ff6666', 'Cancel', true, ScanMode.QR,);
+      debugPrint(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
@@ -54,9 +55,9 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+          '#ff6666', 'Cancel', true, ScanMode.BARCODE,);
       debugPrint(barcodeScanRes);
-      _skipToProductDetail(barcodeScanRes);
+      await _skipToProductDetail(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
@@ -94,12 +95,6 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
                           const SizedBox(
                             height: 24,
                           ),
-                          // ElevatedButton(
-                          //     onPressed: scanQR,
-                          //     child: const Text('Start QR scan')),
-                          // ElevatedButton(
-                          //     onPressed: startBarcodeScanStream,
-                          //     child: const Text('Start barcode scan stream')),
                           Text('Scan result : $_scanBarcode\n',
                               style: const TextStyle(fontSize: 20),
                           ),
@@ -113,13 +108,16 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
     );
   }
 
-  void _skipToProductDetail(String barcode){
-    Navigator.of(context).push(
-      MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) {
-          return const ProductDetailsPage();
-        },
+  Future<void> _skipToProductDetail(String barcode) async {
+    final isbn = barcode.barcodeToIsbn();
+    final url = 'https://www.amazon.co.jp/dp/$isbn';
+    await Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        builder: (context) =>
+            ProductDetailsPage(url: url),
       ),
     );
   }
+
 }
