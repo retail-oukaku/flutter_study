@@ -77,7 +77,7 @@ class Home extends StatelessWidget {
                   return const CountUpPage();
                 case '課題2':
                   return const TodoListPage();
-                case '課題3':
+                case '課題4':
                   return const BarcodeScanPage();
                 default:
                   return const CountUpPage();
