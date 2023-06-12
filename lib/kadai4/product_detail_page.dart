@@ -65,9 +65,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   }
 
   Widget _buildWebView(){
-
     // final url = 'https://www.amazon.co.jp/dp/ISBN4-87424-354-1';
-
     return WebViewWidget(
       controller: _loadWebViewController()
         ..loadRequest(Uri.parse(widget.url)),

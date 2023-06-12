@@ -2,10 +2,7 @@
 
 
 extension StringExtension on String {
-  bool cnIsNumber() {
-    final reg = RegExp(r'^-?[0-9.]+$');
-    return reg.hasMatch(this);
-  }
+
   String barcodeToIsbn() {
     if (length != 13) {
       return '';
