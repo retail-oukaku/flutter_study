@@ -157,8 +157,8 @@ class _StopWatchPageState extends State<StopWatchPage> {
   }
 
   String _getTime(Duration elapsed){
-    final str = elapsed.toString();
-    return str.substring(0,str.length - 4);
+    final elapsedNumber = elapsed.toString();
+    return elapsedNumber.substring(0,elapsedNumber.length - 4);
   }
 
   void _updateElapsedTime() {
