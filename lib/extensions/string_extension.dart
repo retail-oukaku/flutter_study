@@ -11,11 +11,12 @@ extension StringExtension on String {
       return '';
     }
     var isbn = substring(3, 12);
-    var sum = 0;
-    for (var i = 0; i < isbn.length; i++){
-      final number = int.parse(isbn.substring(i, i+1));
-      sum += number*(i+1);
-    }
+
+    final sum = isbn.split('')
+        .asMap()
+        .entries
+        .map((entry) => int.parse(entry.value)*(entry.key+1))
+        .reduce((value, element) => value + element);
 
     if (sum%11 == 10) {
       isbn += 'X';
