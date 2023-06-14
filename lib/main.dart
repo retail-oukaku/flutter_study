@@ -4,6 +4,7 @@ import 'kadai1/count_up_page.dart';
 
 import 'kadai2/todo_list_page.dart';
 import 'kadai3/stop_watch_page.dart';
+import 'kadai5/github_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -78,6 +79,8 @@ class Home extends StatelessWidget {
                   return const TodoListPage();
                 case '課題3':
                   return const StopWatchPage();
+                case '課題5':
+                  return const GithubPage();
                 default:
                   return const CountUpPage();
               }
