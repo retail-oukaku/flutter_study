@@ -23,7 +23,7 @@ extension StringExtension on String {
         .map((entry) => int.parse(entry.value)*(entry.key+1))
         .reduce((value, element) => value + element);
 
-    if (sum%isbnCheckNumber == isbnCheckX) {
+    if (sum%isbnCheckNumber == isbnCheckNumberX) {
       isbn += 'X';
     } else {
       isbn += (sum%isbnCheckNumber).toString();
