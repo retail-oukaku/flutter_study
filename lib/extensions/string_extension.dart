@@ -1,16 +1,21 @@
 
 
+const isbnLength = 13;
+const isbnStartIndex = 3;
+const isbnEndIndex = 12;
+const isbnCheckNumber = 11;
+const isbnCheckNumberX = 10;
 
 extension StringExtension on String {
 
   String barcodeToIsbn() {
-    if (length != 13) {
+    if (length != isbnLength) {
       return '';
     }
     if (int.tryParse(this) == null){
       return '';
     }
-    var isbn = substring(3, 12);
+    var isbn = substring(isbnStartIndex, isbnEndIndex);
 
     final sum = isbn.split('')
         .asMap()
@@ -18,10 +23,10 @@ extension StringExtension on String {
         .map((entry) => int.parse(entry.value)*(entry.key+1))
         .reduce((value, element) => value + element);
 
-    if (sum%11 == 10) {
+    if (sum%isbnCheckNumber == isbnCheckX) {
       isbn += 'X';
     } else {
-      isbn += (sum%11).toString();
+      isbn += (sum%isbnCheckNumber).toString();
     }
     return isbn;
   }
