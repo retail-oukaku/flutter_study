@@ -1,6 +1,9 @@
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:retrofit/retrofit.dart';
+
+import '../kadai5/models/post_model.dart';
+import '../kadai5/service/api_service.dart';
 
 class GithubPage extends StatefulWidget {
   const GithubPage({super.key});
@@ -37,25 +40,7 @@ class _GithubPageState extends State<GithubPage> {
           ),
           title: const Text('課題５：GitHubリポジトリ'),
         ),
-        body: SafeArea(
-          child: Container (
-            padding: const EdgeInsets.all(16),
-            alignment: Alignment.topCenter,
-            child: Column(
-              children: [
-                const Text(
-                  'Users',
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Expanded(
-                  child: _buildListWidget(),
-                ),
-              ],
-            ),
-          ),
-        ),
+        body: _body(),
         floatingActionButton: FloatingActionButton(
           onPressed: _skipToDetail,
           tooltip: 'Increment',
@@ -111,8 +96,56 @@ class _GithubPageState extends State<GithubPage> {
       },
     );
   }
-  
-  void _loadData() async {
-    // final response = await http.Uri.tryParse("https://api.github.com/users")
+
+
+  FutureBuilder _body() {
+    final apiService = ApiService(Dio(BaseOptions(contentType: 'application/json')));
+    return FutureBuilder(
+      future: apiService.getPosts(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          final posts = snapshot.data! as List<PostModel>;
+          return _posts(posts);
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
+  }
+
+  Widget _posts(List<PostModel> posts) {
+    return ListView.builder(
+      itemCount: posts.length,
+      itemBuilder: (context, index) {
+        return Container(
+          margin: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                (index + 1).toString(),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                posts[index].title,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(posts[index].title),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

@@ -1,0 +1,21 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'post_model.g.dart';
+
+@JsonSerializable()
+class PostModel {
+
+  PostModel({required this.userId,
+    required this.id,
+    required this.title,
+    required this.body});
+
+  factory PostModel.fromJson(Map<String,
+      dynamic> json,) => _$PostModelFromJson(json);
+  int userId;
+  int id;
+  String title;
+  String body;
+
+  Map<String, dynamic> toJson() => _$PostModelToJson(this);
+}
