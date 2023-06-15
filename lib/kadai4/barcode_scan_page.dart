@@ -71,8 +71,7 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
         home: Scaffold(
             appBar: AppBar(title: const Text('Barcode scan')),
             body: SafeArea(
-              child: Container(
-                alignment: Alignment.center,
+              child: Center(
                 child: Flex(
                   direction: Axis.vertical,
                   mainAxisAlignment: MainAxisAlignment.center,
