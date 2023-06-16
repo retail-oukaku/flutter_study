@@ -5,10 +5,12 @@ import '../models/post_model.dart';
 
 part 'api_service.g.dart';
 
-@RestApi(baseUrl: 'https://jsonplaceholder.typicode.com/')
+@RestApi(baseUrl: 'https://api.github.com/')
 abstract class ApiService {
-  factory ApiService(Dio dio) = _ApiService;
+  factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
-  @GET('posts')
-  Future<List<PostModel>> getPosts();
+  @GET('users')
+  Future<List<PostModel>> getPosts(
+
+      );
 }

@@ -5,17 +5,17 @@ part 'post_model.g.dart';
 @JsonSerializable()
 class PostModel {
 
-  PostModel({required this.userId,
+  PostModel({required this.login,
     required this.id,
-    required this.title,
-    required this.body});
+    required this.avatar_url,
+    required this.type});
 
   factory PostModel.fromJson(Map<String,
       dynamic> json,) => _$PostModelFromJson(json);
-  int userId;
+  String login;
   int id;
-  String title;
-  String body;
+  String avatar_url;
+  String type;
 
   Map<String, dynamic> toJson() => _$PostModelToJson(this);
 }

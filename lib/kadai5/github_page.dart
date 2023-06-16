@@ -135,13 +135,13 @@ class _GithubPageState extends State<GithubPage> {
                 textAlign: TextAlign.center,
               ),
               Text(
-                posts[index].title,
+                posts[index].login,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 10,
               ),
-              Text(posts[index].title),
+              Text(posts[index].type),
             ],
           ),
         );
