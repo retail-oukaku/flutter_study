@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
-import '../models/post_model.dart';
+import '../models/user_model.dart';
 
 part 'api_service.g.dart';
 
@@ -10,7 +10,17 @@ abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
   @GET('users')
-  Future<List<PostModel>> getPosts(
+  Future<List<UserModel>> getPosts(
 
       );
+  // @GET('/search/issues')
+  // Future<IssueResult> searchIssues(
+  //     @Query('q') String query,
+  //     );
+  //
+  // @GET('/repos/{owner}/{repo}/pulls')
+  // Future<List<Pull>> getPulls(
+  //     @Path('owner') String owner,
+  //     @Path('repo') String repo,
+  //     );
 }

@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../kadai5/models/post_model.dart';
+import '../kadai5/models/user_model.dart';
 import '../kadai5/service/api_service.dart';
 
 class GithubPage extends StatefulWidget {
@@ -104,8 +104,8 @@ class _GithubPageState extends State<GithubPage> {
       future: apiService.getPosts(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          final posts = snapshot.data! as List<PostModel>;
-          return _posts(posts);
+          final users = snapshot.data! as List<UserModel>;
+          return _posts(users);
         } else {
           return const Center(
             child: CircularProgressIndicator(),
@@ -115,9 +115,9 @@ class _GithubPageState extends State<GithubPage> {
     );
   }
 
-  Widget _posts(List<PostModel> posts) {
+  Widget _posts(List<UserModel> users) {
     return ListView.builder(
-      itemCount: posts.length,
+      itemCount: users.length,
       itemBuilder: (context, index) {
         return Container(
           margin: const EdgeInsets.all(10),
@@ -135,13 +135,13 @@ class _GithubPageState extends State<GithubPage> {
                 textAlign: TextAlign.center,
               ),
               Text(
-                posts[index].login,
+                users[index].login,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 10,
               ),
-              Text(posts[index].type),
+              Text(users[index].type),
             ],
           ),
         );
