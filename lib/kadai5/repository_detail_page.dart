@@ -18,8 +18,6 @@ class RepositoryDetailPage extends StatefulWidget {
 
 class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
   final _widgets = <Widget>[];
-  final _items = <String>['11','11','11','11','11','11','11','11','11','11','11',
-    '11','11','11','11','11','444',];
   @override
   void initState() {
     super.initState();
@@ -54,7 +52,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
       future: apiService.getRepos(widget.userName, widget.projectName),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          _builListCells(snapshot.data!);
+          _buildListCells(snapshot.data!);
           return _buildBody(snapshot.data!);
         } else {
           return const Center(
@@ -121,21 +119,41 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
     );
   }
 
-  void _builListCells(RepositoryModel model){
-    // _widgets.add(value);
+  void _buildListCells(RepositoryModel model){
+    _widgets..add(_buildCell(const Icon(Icons.water_drop),
+        'Watchers',
+        model.watchers.toString(),),)
+      ..add(_buildCell(const Icon(Icons.star),
+        'Stars',
+        model.stargazers_count.toString(),),)
+      ..add(_buildCell(const Icon(Icons.science_sharp),
+        'Language',
+        model.language != null? model.language! :'null',),)
+      ..add(_buildCell(const Icon(Icons.interests_sharp),
+        'Issue',
+        model.open_issues_count.toString(),),)
+      ..add(_buildCell(const Icon(Icons.face),
+        'Forks',
+        model.forks.toString(),),)
+      ..add(_buildCell(const Icon(Icons.dashboard),
+        'Branch',
+        model.default_branch != null? model.default_branch! :'null',),)
+      ..add(_buildCell(const Icon(Icons.safety_divider_sharp),
+        'Subscribers',
+        model.subscribers_count.toString(),),);
   }
 
   Widget _buildListWidget()  {
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: _items.length,
+      itemCount: _widgets.length,
       itemBuilder: (context, index) {
-        return _buildCell(_items[index]);
+        return _widgets[index];
       },
     );
   }
 
-  Widget _buildCell(String text){
+  Widget _buildCell(Icon icon, String title, String text){
     return Container(
       margin: const EdgeInsets.all(4),
       padding: const EdgeInsets.all(8),
@@ -146,16 +164,16 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
       ),
       child: Row (
         children: [
-          const SizedBox(
+          SizedBox(
             width: 40,
             height: 40,
-            child: Icon(Icons.add),
+            child: icon,
           ),
-          Expanded(child: Text(text)),
+          Expanded(child: Text(title)),
           const SizedBox(
             width: 40,
           ),
-          Text('777$text'),
+          Text(text),
           const SizedBox(
             width: 8,
           ),
