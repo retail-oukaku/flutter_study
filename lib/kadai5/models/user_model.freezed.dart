@@ -20,10 +20,10 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  String get login => throw _privateConstructorUsedError;
-  String get avatar_url => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  int get watchers => throw _privateConstructorUsedError; //owner
+  Owner get owner => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,9 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({String login, String avatar_url, String type, int id});
+  $Res call({String name, String? description, int watchers, Owner owner});
+
+  $OwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -52,29 +54,37 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? login = null,
-    Object? avatar_url = null,
-    Object? type = null,
-    Object? id = null,
+    Object? name = null,
+    Object? description = freezed,
+    Object? watchers = null,
+    Object? owner = null,
   }) {
     return _then(_value.copyWith(
-      login: null == login
-          ? _value.login
-          : login // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      avatar_url: null == avatar_url
-          ? _value.avatar_url
-          : avatar_url // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      watchers: null == watchers
+          ? _value.watchers
+          : watchers // ignore: cast_nullable_to_non_nullable
               as int,
+      owner: null == owner
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as Owner,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OwnerCopyWith<$Res> get owner {
+    return $OwnerCopyWith<$Res>(_value.owner, (value) {
+      return _then(_value.copyWith(owner: value) as $Val);
+    });
   }
 }
 
@@ -85,7 +95,10 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       __$$_UserModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String login, String avatar_url, String type, int id});
+  $Res call({String name, String? description, int watchers, Owner owner});
+
+  @override
+  $OwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -99,28 +112,28 @@ class __$$_UserModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? login = null,
-    Object? avatar_url = null,
-    Object? type = null,
-    Object? id = null,
+    Object? name = null,
+    Object? description = freezed,
+    Object? watchers = null,
+    Object? owner = null,
   }) {
     return _then(_$_UserModel(
-      login: null == login
-          ? _value.login
-          : login // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      avatar_url: null == avatar_url
-          ? _value.avatar_url
-          : avatar_url // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      watchers: null == watchers
+          ? _value.watchers
+          : watchers // ignore: cast_nullable_to_non_nullable
               as int,
+      owner: null == owner
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as Owner,
     ));
   }
 }
@@ -129,26 +142,27 @@ class __$$_UserModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserModel implements _UserModel {
   const _$_UserModel(
-      {required this.login,
-      required this.avatar_url,
-      required this.type,
-      required this.id});
+      {required this.name,
+      this.description,
+      required this.watchers,
+      required this.owner});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
 
   @override
-  final String login;
+  final String name;
   @override
-  final String avatar_url;
+  final String? description;
   @override
-  final String type;
+  final int watchers;
+//owner
   @override
-  final int id;
+  final Owner owner;
 
   @override
   String toString() {
-    return 'UserModel(login: $login, avatar_url: $avatar_url, type: $type, id: $id)';
+    return 'UserModel(name: $name, description: $description, watchers: $watchers, owner: $owner)';
   }
 
   @override
@@ -156,16 +170,18 @@ class _$_UserModel implements _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserModel &&
-            (identical(other.login, login) || other.login == login) &&
-            (identical(other.avatar_url, avatar_url) ||
-                other.avatar_url == avatar_url) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.watchers, watchers) ||
+                other.watchers == watchers) &&
+            (identical(other.owner, owner) || other.owner == owner));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, login, avatar_url, type, id);
+  int get hashCode =>
+      Object.hash(runtimeType, name, description, watchers, owner);
 
   @JsonKey(ignore: true)
   @override
@@ -183,22 +199,22 @@ class _$_UserModel implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final String login,
-      required final String avatar_url,
-      required final String type,
-      required final int id}) = _$_UserModel;
+      {required final String name,
+      final String? description,
+      required final int watchers,
+      required final Owner owner}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
 
   @override
-  String get login;
+  String get name;
   @override
-  String get avatar_url;
+  String? get description;
   @override
-  String get type;
-  @override
-  int get id;
+  int get watchers;
+  @override //owner
+  Owner get owner;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>

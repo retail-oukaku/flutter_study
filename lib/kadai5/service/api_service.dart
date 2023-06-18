@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_web_test_project/kadai5/models/repository_model.dart';
 import 'package:retrofit/http.dart';
 
 import '../models/user_model.dart';
@@ -9,18 +10,14 @@ part 'api_service.g.dart';
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
-  @GET('users')
-  Future<List<UserModel>> getPosts(
-
+  @GET('users/{userName}/repos')
+  Future<List<UserModel>> getReposList(
+      @Path('userName') String userName,
       );
-  // @GET('/search/issues')
-  // Future<IssueResult> searchIssues(
-  //     @Query('q') String query,
-  //     );
-  //
-  // @GET('/repos/{owner}/{repo}/pulls')
-  // Future<List<Pull>> getPulls(
-  //     @Path('owner') String owner,
-  //     @Path('repo') String repo,
-  //     );
+
+  @GET('/repos/{owner}/{repo}')
+  Future<RepositoryModel> getRepos(
+      @Path('owner') String owner,
+      @Path('repo') String repo,
+      );
 }

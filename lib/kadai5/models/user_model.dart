@@ -1,5 +1,5 @@
+import 'package:flutter_web_test_project/kadai5/models/owner_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.freezed.dart';
 
@@ -8,10 +8,12 @@ part 'user_model.g.dart';
 @freezed
 class UserModel with _$UserModel {
   const factory UserModel({
-    required String login,
-    required String avatar_url,
-    required String type,
-    required int id,
+    required String name,
+    String? description,
+    required int watchers,
+
+    //owner
+    required Owner owner,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, Object?> json)
