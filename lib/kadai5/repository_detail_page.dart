@@ -67,60 +67,57 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
     return SafeArea(
       child: Container(
         color: Colors.grey[50],
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                repositoryModel.owner.avatar_url != null ?
-                Image(
-                  image: NetworkImage(repositoryModel.owner.avatar_url!),
-                  width: 32,
-                  height: 32,
-                ) : const Text(''),
-                const SizedBox(
-                  width: 16,
-                ),
-                Text(
-                  repositoryModel.owner.login,
-                  style: const TextStyle(
-                    fontSize: 24,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Text(
-              repositoryModel.name,
-              style: const TextStyle(
-                fontSize: 26,
-                fontWeight:FontWeight.bold,
-              ),
-            ),
-            (repositoryModel.description != null)?
-            Text(
-              repositoryModel.description!,
-              style:const TextStyle(
-                fontSize: 20,
-              ),
-            ) :const Text('null'),
-            Flexible(
-              child:  _buildListWidget(),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-          ],
-        ),
+        padding: const EdgeInsets.all(8),
+        child: _buildListWidget(),
       ),
     );
   }
 
   void _buildListCells(RepositoryModel model){
-    _widgets..add(_buildCell(const Icon(Icons.water_drop),
+    final topWidget =  Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            model.owner.avatar_url != null ?
+            Image(
+              image: NetworkImage(model.owner.avatar_url!),
+              width: 32,
+              height: 32,
+            ) : const Text(''),
+            const SizedBox(
+              width: 16,
+            ),
+            Text(
+              model.owner.login,
+              style: const TextStyle(
+                fontSize: 24,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Text(
+          model.name,
+          style: const TextStyle(
+            fontSize: 26,
+            fontWeight:FontWeight.bold,
+          ),
+        ),
+        (model.description != null)?
+        Text(
+          model.description!,
+          style:const TextStyle(
+            fontSize: 20,
+          ),
+        ) :const Text('null'),
+      ],
+    );
+    
+    _widgets..add(topWidget)
+      ..add(_buildCell(const Icon(Icons.water_drop),
         'Watchers',
         model.watchers.toString(),),)
       ..add(_buildCell(const Icon(Icons.star),
