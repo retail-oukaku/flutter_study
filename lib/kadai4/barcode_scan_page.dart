@@ -45,7 +45,7 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
     });
   }
 
-  Future<void> scanBarcodeNormal() async {
+  Future<void> _scanBarcodeNormal() async {
     String barcodeScanRes;
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
@@ -77,7 +77,7 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     ElevatedButton(
-                      onPressed: scanBarcodeNormal,
+                      onPressed: _scanBarcodeNormal,
                       child: const Text('Start barcode scan'),
                     ),
                     const SizedBox(
