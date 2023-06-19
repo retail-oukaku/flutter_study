@@ -20,31 +20,6 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
     super.initState();
   }
 
-  Future<void> startBarcodeScanStream() async {
-    FlutterBarcodeScanner.getBarcodeStreamReceiver(
-        '#ff6666', 'Cancel', true, ScanMode.BARCODE,)!
-        .listen((barcode) => debugPrint(barcode is String ? barcode : ''));
-  }
-
-  Future<void> scanQR() async {
-    String barcodeScanRes;
-    try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.QR,);
-      debugPrint(barcodeScanRes);
-    } on PlatformException {
-      barcodeScanRes = 'Failed to get platform version.';
-    }
-
-    if (!mounted) {
-      return;
-    }
-
-    setState(() {
-      _scanBarcode = barcodeScanRes;
-    });
-  }
-
   Future<void> _scanBarcodeNormal() async {
     String barcodeScanRes;
     try {
