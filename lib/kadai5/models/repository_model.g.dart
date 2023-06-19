@@ -1,15 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'repository_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_RepositoryModel _$$_RepositoryModelFromJson(Map<String, dynamic> json) =>
-    _$_RepositoryModel(
+RepositoryModel _$RepositoryModelFromJson(Map<String, dynamic> json) =>
+    RepositoryModel(
       name: json['name'] as String,
       description: json['description'] as String?,
       watchers: json['watchers'] as int,
@@ -24,7 +22,7 @@ _$_RepositoryModel _$$_RepositoryModelFromJson(Map<String, dynamic> json) =>
       owner: Owner.fromJson(json['owner'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_RepositoryModelToJson(_$_RepositoryModel instance) =>
+Map<String, dynamic> _$RepositoryModelToJson(RepositoryModel instance) =>
     <String, dynamic>{
       'name': instance.name,
       'description': instance.description,

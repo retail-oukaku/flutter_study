@@ -1,21 +1,28 @@
-import 'package:flutter_web_test_project/kadai5/models/owner_model.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'user_model.freezed.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+import 'owner.dart';
 
 part 'user_model.g.dart';
 
-@freezed
-class UserModel with _$UserModel {
-  const factory UserModel({
-    required String name,
-    String? description,
-    required int watchers,
+@immutable
+@JsonSerializable()
+class UserModel {
 
-    //owner
-    required Owner owner,
-  }) = _UserModel;
+  UserModel({
+    required this.name,
+    required this.watchers,
+    this.description,
+    required this.owner,
+  });
 
-  factory UserModel.fromJson(Map<String, Object?> json)
-  => _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String,
+      dynamic> json,) => _$UserModelFromJson(json);
+  String name;
+  int watchers;
+  String? description;
+  Owner owner;
+
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }

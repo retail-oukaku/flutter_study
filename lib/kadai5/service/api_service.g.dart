@@ -1,15 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: no_leading_underscores_for_local_identifiers, type_annotate_public_apis, lines_longer_than_80_chars, prefer_const_declarations, require_trailing_commas, prefer_final_locals
-
 part of 'api_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,
-// no_leading_underscores_for_local_identifiers
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _ApiService implements ApiService {
   _ApiService(
