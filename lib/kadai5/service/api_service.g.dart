@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: lines_longer_than_80_chars, prefer_const_declarations, require_trailing_commas, prefer_final_locals, type_annotate_public_apis
+
 part of 'api_service.dart';
 
 // **************************************************************************
@@ -21,7 +23,7 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<List<UserModel>> getReposList(userName) async {
+  Future<List<UserModel>> getReposList(String userName) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

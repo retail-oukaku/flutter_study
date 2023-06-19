@@ -1,4 +1,6 @@
 
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -10,7 +12,7 @@ part 'repository_model.g.dart';
 @JsonSerializable()
 class RepositoryModel {
 
-  RepositoryModel({
+  const RepositoryModel({
     required this.name,
     this.description,
     required this.watchers,
@@ -27,18 +29,18 @@ class RepositoryModel {
 
   factory RepositoryModel.fromJson(Map<String,
       dynamic> json,) => _$RepositoryModelFromJson(json);
-  String name;
-  String? description;
-  int watchers;
-  int stargazers_count;
-  String? language;
-  bool has_issues;
-  int open_issues_count;
-  int forks;
-  String? default_branch;
-  int subscribers_count;
-  bool allow_forking;
-  Owner owner;
+  final String name;
+  final String? description;
+  final int watchers;
+  final int stargazers_count;
+  final String? language;
+  final bool has_issues;
+  final int open_issues_count;
+  final int forks;
+  final String? default_branch;
+  final int subscribers_count;
+  final bool allow_forking;
+  final Owner owner;
   // Owner owner;
 
   Map<String, dynamic> toJson() => _$RepositoryModelToJson(this);
