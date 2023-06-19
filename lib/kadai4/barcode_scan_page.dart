@@ -97,7 +97,7 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
   Future<void> _skipToProductDetail(String barcode) async {
     final isbn = barcode.barcodeToIsbn();
     if (isbn.isEmpty) {
-      showAlertDialog();
+      _showAlertDialog();
       return;
     }
     final url = 'https://www.amazon.co.jp/dp/$isbn';
@@ -110,7 +110,7 @@ class _BarcodeScanPageState extends State<BarcodeScanPage> {
     );
   }
 
-  void showAlertDialog() {
+  void _showAlertDialog() {
     showDialog<void>(
       context: context,
       barrierDismissible: false,
