@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_test_project/kadai5/repository_list_page.dart';
 
-class GithubApiPage extends StatefulWidget {
-  const GithubApiPage({super.key});
+class SearchUserPage extends StatefulWidget {
+  const SearchUserPage({super.key});
 
   @override
-  State<GithubApiPage> createState() => _GithubApiPageState();
+  State<SearchUserPage> createState() => _SearchUserPageState();
 }
 
-class _GithubApiPageState extends State<GithubApiPage> {
+class _SearchUserPageState extends State<SearchUserPage> {
   final _itemController = TextEditingController();
   @override
   void initState() {
