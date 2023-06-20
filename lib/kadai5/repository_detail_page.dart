@@ -119,13 +119,12 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
             fontWeight:FontWeight.bold,
           ),
         ),
-        (model.description != null)?
         Text(
-          model.description!,
+          model.description ?? 'null',
           style:const TextStyle(
             fontSize: 20,
           ),
-        ) :const Text('null'),
+        ),
       ],
     );
     
