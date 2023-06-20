@@ -40,8 +40,8 @@ class _SearchUserPageState extends State<SearchUserPage> {
           ),
           title: const Text('課題５：GitHubリポジトリ'),
         ),
-        body:SafeArea(
-          child:GestureDetector(
+        body: SafeArea(
+          child: GestureDetector(
             onTap: () {
               hideKeyboard(context);
             },
