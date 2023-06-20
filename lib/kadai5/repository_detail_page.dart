@@ -9,7 +9,9 @@ import 'models/repository_model.dart';
 class RepositoryDetailPage extends StatefulWidget {
   const RepositoryDetailPage({super.key,
     required this.userName,
-    required this.projectName,});
+    required this.projectName,
+  }
+  );
   @required final String userName;
   @required final String projectName;
   @override
@@ -57,15 +59,15 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
           case ConnectionState.active:
           case ConnectionState.waiting:
           case ConnectionState.none:
-          return const Center(
-            child: CircularProgressIndicator(),
+            return const Center(
+              child: CircularProgressIndicator(),
           );
         }
       },
     );
   }
 
-  Widget _dealWithData(RepositoryModel? model){
+  Widget _dealWithData(RepositoryModel? model) {
     if (model != null) {
       _buildListCells(model);
       return _buildBody(model);
@@ -152,7 +154,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
         model.subscribers_count.toString(),),);
   }
 
-  Widget _buildListWidget()  {
+  Widget _buildListWidget() {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: _widgets.length,
@@ -162,7 +164,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
     );
   }
 
-  Widget _buildCell(Icon icon, String title, String text){
+  Widget _buildCell(Icon icon, String title, String text) {
     return Container(
       margin: const EdgeInsets.all(4),
       padding: const EdgeInsets.all(8),
@@ -171,8 +173,8 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
         borderRadius: BorderRadius.circular(5),
         border: Border.all(),
       ),
-      child: Row (
-        children: [
+      child: Row(
+        children:[
           SizedBox(
             width: 40,
             height: 40,

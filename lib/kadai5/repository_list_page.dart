@@ -68,7 +68,7 @@ class _RepositoryListPageState extends State<RepositoryListPage> {
     );
   }
 
-  Widget _buildListCellWidget(UserModel user, int index){
+  Widget _buildListCellWidget(UserModel user, int index) {
     return GestureDetector(
       child: Container(
         margin: const EdgeInsets.all(10),
