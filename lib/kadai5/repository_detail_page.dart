@@ -53,8 +53,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
       builder: (context, snapshot) {
         switch(snapshot.connectionState) {
           case ConnectionState.done:
-            _buildListCells(snapshot.data!);
-            return _buildBody(snapshot.data!);
+            return _dealWithData(snapshot.data);
           case ConnectionState.active:
           case ConnectionState.waiting:
           case ConnectionState.none:
@@ -64,6 +63,15 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
         }
       },
     );
+  }
+
+  Widget _dealWithData(RepositoryModel? model){
+    if (model != null) {
+      _buildListCells(model);
+      return _buildBody(model);
+    } else {
+      return const Text('Data Supplied Is Of Wrong Type');
+    }
   }
 
   Widget _buildBody(RepositoryModel repositoryModel){
