@@ -90,12 +90,14 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
       children: [
         Row(
           children: [
-            model.owner.avatar_url != null ?
-            Image(
-              image: NetworkImage(model.owner.avatar_url!),
-              width: 32,
-              height: 32,
-            ) : const Text(''),
+            switch (model.owner.avatar_url) {
+              final avatarUrl? => Image(
+                image: NetworkImage(avatarUrl),
+                width: 32,
+                height: 32,
+              ),
+              _ => const Icon(Icons.account_circle),
+            },
             const SizedBox(
               width: 16,
             ),
