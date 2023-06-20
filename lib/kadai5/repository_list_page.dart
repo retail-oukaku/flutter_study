@@ -47,17 +47,27 @@ class _RepositoryListPageState extends State<RepositoryListPage> {
     return FutureBuilder(
       future: apiService.getReposList(widget.userName),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          final users = snapshot.data!;
-          return _posts(users);
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+        switch(snapshot.connectionState) {
+          case ConnectionState.done:
+            return _dealWithData(snapshot.data);
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+          case ConnectionState.none:
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
         }
       },
     );
   }
+
+  Widget _dealWithData(List<UserModel>? modelList) {
+      if (modelList != null) {
+        return _posts(modelList);
+      } else {
+        return const Text('Data Supplied Is Of Wrong Type');
+      }
+    }
 
   Widget _posts(List<UserModel> users) {
     return ListView.builder(
