@@ -85,9 +85,10 @@ class _SearchUserPageState extends State<SearchUserPage> {
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),
           onPressed: () {
-            if (_itemController.text.isNotEmpty){
-              skipToRepositoryList(_itemController.text);
+            if (_itemController.text.isEmpty){
+              return;
             }
+            skipToRepositoryList(_itemController.text);
           },
           icon: const Icon(Icons.search),
           label: const Text('検索'),
