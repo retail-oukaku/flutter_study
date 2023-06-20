@@ -93,10 +93,9 @@ class _RepositoryListPageState extends State<RepositoryListPage> {
             const SizedBox(
               height: 4,
             ),
-            (user.description != null)?
             Text(
-              user.description!,
-            ) :const Text('null'),
+              user.description ?? 'null',
+            ),
           ],
         ),
       ),
