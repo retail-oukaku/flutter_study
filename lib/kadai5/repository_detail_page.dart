@@ -51,10 +51,13 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
     return FutureBuilder(
       future: apiService.getRepos(widget.userName, widget.projectName),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          _buildListCells(snapshot.data!);
-          return _buildBody(snapshot.data!);
-        } else {
+        switch(snapshot.connectionState) {
+          case ConnectionState.done:
+            _buildListCells(snapshot.data!);
+            return _buildBody(snapshot.data!);
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+          case ConnectionState.none:
           return const Center(
             child: CircularProgressIndicator(),
           );
