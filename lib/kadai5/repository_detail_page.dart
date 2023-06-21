@@ -133,31 +133,38 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
     return ListView(
       children: [
         _buildUserWidget(model),
-        _buildCell(Icons.water_drop,
+        _buildCell(
+          Icons.water_drop,
           'Watchers',
           model.watchers.toString(),
         ),
-        _buildCell(Icons.star,
+        _buildCell(
+          Icons.star,
           'Stars',
           model.stargazersCount.toString(),
         ),
-        _buildCell(Icons.science_sharp,
+        _buildCell(
+          Icons.science_sharp,
           'Language',
           model.language ?? 'null',
         ),
-        _buildCell(Icons.interests_sharp,
+        _buildCell(
+          Icons.interests_sharp,
           'Issue',
           model.openIssuesCount.toString(),
         ),
-        _buildCell(Icons.face,
+        _buildCell(
+          Icons.face,
           'Forks',
           model.forks.toString(),
         ),
-        _buildCell(Icons.dashboard,
+        _buildCell(
+          Icons.dashboard,
           'Branch',
           model.defaultBranch ?? 'null',
         ),
-        _buildCell(Icons.safety_divider_sharp,
+        _buildCell(
+          Icons.safety_divider_sharp,
           'Subscribers',
           model.subscribersCount.toString(),
         ),
