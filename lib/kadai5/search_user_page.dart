@@ -58,11 +58,7 @@ class _SearchUserPageState extends State<SearchUserPage> {
     return Column(
       children: [
         const SizedBox(
-          height: 8,
-        ),
-        const Text(''),
-        const SizedBox(
-          height: 8,
+          height: 32,
         ),
         SizedBox(
           width: 200,
