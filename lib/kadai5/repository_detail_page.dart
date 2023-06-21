@@ -92,7 +92,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
       children: [
         Row(
           children: [
-            switch (model.owner.avatar_url) {
+            switch (model.owner.avatarUrl) {
               final avatarUrl? => Image(
                 image: NetworkImage(avatarUrl),
                 width: 32,
@@ -136,22 +136,22 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
         model.watchers.toString(),),)
       ..add(_buildCell(const Icon(Icons.star),
         'Stars',
-        model.stargazers_count.toString(),),)
+        model.stargazersCount.toString(),),)
       ..add(_buildCell(const Icon(Icons.science_sharp),
         'Language',
         model.language != null? model.language! :'null',),)
       ..add(_buildCell(const Icon(Icons.interests_sharp),
         'Issue',
-        model.open_issues_count.toString(),),)
+        model.openIssuesCount.toString(),),)
       ..add(_buildCell(const Icon(Icons.face),
         'Forks',
         model.forks.toString(),),)
       ..add(_buildCell(const Icon(Icons.dashboard),
         'Branch',
-        model.default_branch != null? model.default_branch! :'null',),)
+        model.defaultBranch != null? model.defaultBranch! :'null',),)
       ..add(_buildCell(const Icon(Icons.safety_divider_sharp),
         'Subscribers',
-        model.subscribers_count.toString(),),);
+        model.subscribersCount.toString(),),);
   }
 
   Widget _buildListWidget() {

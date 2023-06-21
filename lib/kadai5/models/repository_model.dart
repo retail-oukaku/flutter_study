@@ -9,21 +9,21 @@ import 'owner.dart';
 part 'repository_model.g.dart';
 
 @immutable
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class RepositoryModel {
 
   const RepositoryModel({
     required this.name,
     this.description,
     required this.watchers,
-    required this.stargazers_count,
+    required this.stargazersCount,
     this.language,
-    required this.has_issues,
-    required this.open_issues_count,
+    required this.hasIssues,
+    required this.openIssuesCount,
     required this.forks,
-    this.default_branch,
-    required this.subscribers_count,
-    required this.allow_forking,
+    this.defaultBranch,
+    required this.subscribersCount,
+    required this.allowForking,
     required this.owner,
   });
 
@@ -32,14 +32,14 @@ class RepositoryModel {
   final String name;
   final String? description;
   final int watchers;
-  final int stargazers_count;
+  final int stargazersCount;
   final String? language;
-  final bool has_issues;
-  final int open_issues_count;
+  final bool hasIssues;
+  final int openIssuesCount;
   final int forks;
-  final String? default_branch;
-  final int subscribers_count;
-  final bool allow_forking;
+  final String? defaultBranch;
+  final int subscribersCount;
+  final bool allowForking;
   final Owner owner;
   // Owner owner;
 

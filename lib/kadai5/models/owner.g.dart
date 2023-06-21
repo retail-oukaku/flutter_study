@@ -8,10 +8,10 @@ part of 'owner.dart';
 
 Owner _$OwnerFromJson(Map<String, dynamic> json) => Owner(
       login: json['login'] as String,
-      avatar_url: json['avatar_url'] as String?,
+      avatarUrl: json['avatar_url'] as String?,
     );
 
 Map<String, dynamic> _$OwnerToJson(Owner instance) => <String, dynamic>{
-      'avatar_url': instance.avatar_url,
+      'avatar_url': instance.avatarUrl,
       'login': instance.login,
     };

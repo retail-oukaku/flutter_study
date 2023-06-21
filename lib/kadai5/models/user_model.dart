@@ -7,7 +7,7 @@ import 'owner.dart';
 part 'user_model.g.dart';
 
 @immutable
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UserModel {
 
   const UserModel({
