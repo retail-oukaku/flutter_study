@@ -19,7 +19,6 @@ class RepositoryDetailPage extends StatefulWidget {
 }
 
 class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
-  final _widgets = <Widget>[];
   @override
   void initState() {
     super.initState();
@@ -69,7 +68,6 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
 
   Widget _dealWithData(RepositoryModel? model) {
     if (model != null) {
-      _buildListCells(model);
       return _buildBody(model);
     } else {
       return const Text('Data Supplied Is Of Wrong Type');
@@ -81,13 +79,13 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
       child: Container(
         color: Colors.grey[50],
         padding: const EdgeInsets.all(8),
-        child: _buildListWidget(),
+        child: _buildListWidget(repositoryModel),
       ),
     );
   }
 
-  void _buildListCells(RepositoryModel model){
-    final topWidget =  Column(
+  Widget _buildUserWidget(RepositoryModel model){
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
@@ -129,42 +127,45 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
         ),
       ],
     );
-    
-    _widgets..add(topWidget)
-      ..add(_buildCell(const Icon(Icons.water_drop),
-        'Watchers',
-        model.watchers.toString(),),)
-      ..add(_buildCell(const Icon(Icons.star),
-        'Stars',
-        model.stargazersCount.toString(),),)
-      ..add(_buildCell(const Icon(Icons.science_sharp),
-        'Language',
-        model.language != null? model.language! :'null',),)
-      ..add(_buildCell(const Icon(Icons.interests_sharp),
-        'Issue',
-        model.openIssuesCount.toString(),),)
-      ..add(_buildCell(const Icon(Icons.face),
-        'Forks',
-        model.forks.toString(),),)
-      ..add(_buildCell(const Icon(Icons.dashboard),
-        'Branch',
-        model.defaultBranch != null? model.defaultBranch! :'null',),)
-      ..add(_buildCell(const Icon(Icons.safety_divider_sharp),
-        'Subscribers',
-        model.subscribersCount.toString(),),);
   }
 
-  Widget _buildListWidget() {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: _widgets.length,
-      itemBuilder: (context, index) {
-        return _widgets[index];
-      },
+  Widget _buildListWidget(RepositoryModel model) {
+    return ListView(
+      children: [
+        _buildUserWidget(model),
+        _buildCell(Icons.water_drop,
+          'Watchers',
+          model.watchers.toString(),
+        ),
+        _buildCell(Icons.star,
+          'Stars',
+          model.stargazersCount.toString(),
+        ),
+        _buildCell(Icons.science_sharp,
+          'Language',
+          model.language ?? 'null',
+        ),
+        _buildCell(Icons.interests_sharp,
+          'Issue',
+          model.openIssuesCount.toString(),
+        ),
+        _buildCell(Icons.face,
+          'Forks',
+          model.forks.toString(),
+        ),
+        _buildCell(Icons.dashboard,
+          'Branch',
+          model.defaultBranch ?? 'null',
+        ),
+        _buildCell(Icons.safety_divider_sharp,
+          'Subscribers',
+          model.subscribersCount.toString(),
+        ),
+      ],
     );
   }
 
-  Widget _buildCell(Icon icon, String title, String text) {
+  Widget _buildCell(IconData icon, String title, String text) {
     return Container(
       margin: const EdgeInsets.all(4),
       padding: const EdgeInsets.all(8),
@@ -178,7 +179,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
           SizedBox(
             width: 40,
             height: 40,
-            child: icon,
+            child: Icon(icon),
           ),
           Expanded(child: Text(title)),
           const SizedBox(
