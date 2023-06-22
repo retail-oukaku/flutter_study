@@ -4,6 +4,8 @@ import 'kadai1/count_up_page.dart';
 
 import 'kadai2/todo_list_page.dart';
 import 'kadai3/stop_watch_page.dart';
+
+import 'kadai4/barcode_scan_page.dart';
 import 'kadai5/search_user_page.dart';
 
 void main() => runApp(const MyApp());
@@ -79,6 +81,8 @@ class Home extends StatelessWidget {
                   return const TodoListPage();
                 case '課題3':
                   return const StopWatchPage();
+                case '課題4':
+                  return const BarcodeScanPage();
                 case '課題5':
                   return const SearchUserPage();
                 default:
