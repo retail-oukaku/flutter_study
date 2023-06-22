@@ -183,10 +183,12 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
       ),
       child: Row(
         children:[
-          SizedBox(
-            width: 40,
-            height: 40,
-            child: Icon(icon),
+          Icon(
+            icon,
+            size: 32,
+          ),
+          const SizedBox(
+            width: 8,
           ),
           Expanded(child: Text(title)),
           const SizedBox(
