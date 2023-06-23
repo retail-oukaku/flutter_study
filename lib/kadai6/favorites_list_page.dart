@@ -5,7 +5,7 @@ import 'package:flutter_web_test_project/kadai6/models/article.dart';
 import 'package:flutter_web_test_project/kadai6/models/news_model.dart';
 import 'package:flutter_web_test_project/kadai6/service/news_api_service.dart';
 
-import 'favorites_manager.dart';
+import 'utils/favorites_manager.dart';
 import 'news_detail_page.dart';
 
 class FavoritesListPage extends StatefulWidget {
@@ -22,6 +22,10 @@ class _FavoritesListPageState extends State<FavoritesListPage> {
   @override
   void initState() {
     super.initState();
+    _loadList();
+  }
+
+  void _loadList(){
     manager.getFavoriteTitles().then((value) {
       setState(() {
         _articlesTitles = value;
@@ -86,9 +90,15 @@ class _FavoritesListPageState extends State<FavoritesListPage> {
     await Navigator.of(context).push(
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) {
-          return NewsDetailPage(title: title ,fileName: _articlesFileNames![index],);
+          return NewsDetailPage(
+            title: title ,
+            fileName: _articlesFileNames![index],
+          );
         },
       ),
-    );
+    ).then((value) {
+      _loadList();
+    });
   }
+
 }

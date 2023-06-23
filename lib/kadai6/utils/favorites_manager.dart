@@ -4,7 +4,7 @@ import 'package:flutter_web_test_project/kadai6/utils/file_storage_manager.dart'
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-import 'models/article.dart';
+import '../models/article.dart';
 
 const favoritesTitles = 'favoritesTitles';
 const favoriteFileNames= 'favoriteFileNames';
