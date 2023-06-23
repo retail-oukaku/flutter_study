@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
 
 class FileStorageManager {
@@ -16,6 +17,7 @@ class FileStorageManager {
       // Write the file
       return file.writeAsString(jsonString);
     } on Exception catch(e) {
+      debugPrint(e.toString());
       return File('');
     }
   }
@@ -28,6 +30,7 @@ class FileStorageManager {
       final contents = await file.readAsString();
       return contents;
     } on Exception catch(e) {
+      debugPrint(e.toString());
       return '';
     }
   }
@@ -54,6 +57,7 @@ class FileStorageManager {
 
       return contents;
     } on Exception catch(e) {
+      debugPrint(e.toString());
       return '';
     }
   }

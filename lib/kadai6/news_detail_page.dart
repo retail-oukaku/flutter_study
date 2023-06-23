@@ -1,12 +1,7 @@
 
-import 'dart:ffi';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_test_project/kadai6/utils/favorites_manager.dart';
 import 'package:flutter_web_test_project/kadai6/models/article.dart';
-import 'package:flutter_web_test_project/kadai6/models/news_model.dart';
-import 'package:flutter_web_test_project/kadai6/service/news_api_service.dart';
+import 'package:flutter_web_test_project/kadai6/utils/favorites_manager.dart';
 
 class NewsDetailPage extends StatefulWidget {
   const NewsDetailPage({
@@ -46,7 +41,8 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
     manager.getFavoriteTitles().then((value) {
       _favoriteArticleTitles = value;
       setState(() {
-        _isFavoriteArticle = _favoriteArticleTitles?.contains(widget.title) ?? false;
+        _isFavoriteArticle =
+            _favoriteArticleTitles?.contains(widget.title) ?? false;
       });
     });
   }

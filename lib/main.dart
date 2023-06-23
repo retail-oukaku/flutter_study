@@ -7,7 +7,6 @@ import 'kadai3/stop_watch_page.dart';
 
 import 'kadai4/barcode_scan_page.dart';
 import 'kadai5/search_user_page.dart';
-import 'kadai6/news_list_page.dart';
 import 'kadai6/input_key_page.dart';
 
 void main() => runApp(const MyApp());

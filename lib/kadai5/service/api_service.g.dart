@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: lines_longer_than_80_chars, type_annotate_public_apis, prefer_const_declarations, require_trailing_commas, prefer_final_locals
+
 part of 'api_service.dart';
 
 // **************************************************************************
