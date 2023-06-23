@@ -7,6 +7,8 @@ import 'kadai3/stop_watch_page.dart';
 
 import 'kadai4/barcode_scan_page.dart';
 import 'kadai5/search_user_page.dart';
+import 'kadai6/news_list_page.dart';
+import 'kadai6/user_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -43,6 +45,7 @@ class Home extends StatelessWidget {
           _menuItem('課題3', const Icon(Icons.room),context),
           _menuItem('課題4', const Icon(Icons.local_shipping),context),
           _menuItem('課題5', const Icon(Icons.airplanemode_active),context),
+          _menuItem('課題6', const Icon(Icons.stacked_bar_chart),context),
         ],
       ),
     );
@@ -85,6 +88,8 @@ class Home extends StatelessWidget {
                   return const BarcodeScanPage();
                 case '課題5':
                   return const SearchUserPage();
+                case '課題6':
+                  return const NewsListPage();
                 default:
                   return const CountUpPage();
               }
