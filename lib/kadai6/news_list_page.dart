@@ -5,12 +5,16 @@ import 'package:flutter_web_test_project/kadai6/models/article.dart';
 import 'package:flutter_web_test_project/kadai6/models/news_model.dart';
 import 'package:flutter_web_test_project/kadai6/news_detail_page.dart';
 import 'package:flutter_web_test_project/kadai6/service/news_api_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'favorites_list_page.dart';
 
 class NewsListPage extends StatefulWidget {
-  const NewsListPage({super.key});
+  const NewsListPage({
+    super.key,
+    required this.newsKey,
+  });
+
+  final String newsKey;
   @override
   State<NewsListPage> createState() => _NewsListPageState();
 }
@@ -39,7 +43,7 @@ class _NewsListPageState extends State<NewsListPage> {
         title: const Text('課題6 ニュース'),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.menu),
+            icon: const Icon(Icons.favorite),
             tooltip: 'FavoritesList',
             onPressed: _skipToFavoritesListPage,
           ),
@@ -48,12 +52,21 @@ class _NewsListPageState extends State<NewsListPage> {
       body: Center(
         child: _body(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _refreshNews,
-        tooltip: 'Increment',
-        child: Text(
-            'Change to ${_isLanguageEn ? _languageZh : _languageEn}',
-        ),
+
+      floatingActionButton: _floatingActionButton(),
+    );
+  }
+
+  Widget _floatingActionButton(){
+    return TextButton(
+      style: TextButton.styleFrom(
+        textStyle: const TextStyle(fontSize: 16),
+        backgroundColor: Colors.blueGrey,
+
+      ),
+      onPressed: _refreshNews,
+      child: Text(
+        'Change to ${_isLanguageEn ? _languageZh : _languageEn}',
       ),
     );
   }
@@ -64,7 +77,7 @@ class _NewsListPageState extends State<NewsListPage> {
       future: apiService.getSearchNewsModel(
         'Apple',
         'publishedAt',
-        'test22793ee4e4eb87e2a',),
+        widget.newsKey,
         _isLanguageEn ? _languageEn:_languageZh,
       ),
       builder: (context, snapshot) {
@@ -149,7 +162,7 @@ class _NewsListPageState extends State<NewsListPage> {
                 ),
                 Expanded(
                     child: Text(
-                      'NO${index + 1}:  ${article.title}',
+                      article.title,
                       textAlign: TextAlign.left,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),

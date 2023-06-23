@@ -8,7 +8,7 @@ import 'kadai3/stop_watch_page.dart';
 import 'kadai4/barcode_scan_page.dart';
 import 'kadai5/search_user_page.dart';
 import 'kadai6/news_list_page.dart';
-import 'kadai6/user_page.dart';
+import 'kadai6/input_key_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -89,7 +89,7 @@ class Home extends StatelessWidget {
                 case '課題5':
                   return const SearchUserPage();
                 case '課題6':
-                  return const NewsListPage();
+                  return const InputKeyPage();
                 default:
                   return const CountUpPage();
               }

@@ -9,14 +9,6 @@ part 'news_api_service.g.dart';
 abstract class NewsApiService {
   factory NewsApiService(Dio dio, {String baseUrl}) = _NewsApiService;
 
-  @GET('/v2/everything?q={q}&apiKey={apiKey}')
-  Future<NewsModel> getNewsModel(
-      @Path('q') String q,
-      // @Query('from') String from,
-      // @Query('sortBy') String sortBy,
-      @Path('apiKey') String apiKey,
-      );
-
   @GET('/v2/everything')
   Future<NewsModel> getSearchNewsModel(
       @Query('q') String q,

@@ -12,8 +12,8 @@ class FavoritesListPage extends StatefulWidget {
 }
 
 class _FavoritesListPageState extends State<FavoritesListPage> {
-  List<String>? _articlesTitles ;
-  late List<String>? _articlesFileNames ;
+  List<String>? _articlesTitles;
+  late List<String>? _articlesFileNames;
   final FavoritesManager manager = FavoritesManager();
   @override
   void initState() {
