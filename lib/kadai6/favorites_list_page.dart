@@ -39,7 +39,7 @@ class _FavoritesListPageState extends State<FavoritesListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ニュース詳細'),
+        title: const Text('お気に入るニュース'),
       ),
       body:_buildListWidget(),
     );
@@ -66,7 +66,7 @@ class _FavoritesListPageState extends State<FavoritesListPage> {
       child: Row(
         children: [
           SizedBox(
-            width: 60,
+            width: 40,
             child: Text(
               (index + 1).toString(),
               textAlign: TextAlign.center,
@@ -76,6 +76,9 @@ class _FavoritesListPageState extends State<FavoritesListPage> {
             child: Text(
               itemText!,
             ),
+          ),
+          const SizedBox(
+            width: 8,
           ),
         ],
       ),

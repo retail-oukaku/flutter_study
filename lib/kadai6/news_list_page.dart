@@ -11,23 +11,24 @@ import 'favorites_list_page.dart';
 
 class NewsListPage extends StatefulWidget {
   const NewsListPage({super.key});
-
   @override
   State<NewsListPage> createState() => _NewsListPageState();
 }
 
 class _NewsListPageState extends State<NewsListPage> {
   List<Article> _articles = <Article>[];
+  final String _languageEn = 'en';
+  final String _languageZh = 'zh';
+  bool _isLanguageEn = true;
   @override
   void initState() {
     super.initState();
+    _refreshNews();
   }
 
-
-
   void _refreshNews() {
-    setState(() async {
-
+    setState(() {
+      _isLanguageEn = !_isLanguageEn;
     });
   }
 
@@ -50,7 +51,9 @@ class _NewsListPageState extends State<NewsListPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _refreshNews,
         tooltip: 'Increment',
-        child: const Icon(Icons.refresh),
+        child: Text(
+            'Change to ${_isLanguageEn ? _languageZh : _languageEn}',
+        ),
       ),
     );
   }
@@ -62,6 +65,7 @@ class _NewsListPageState extends State<NewsListPage> {
         'Apple',
         'publishedAt',
         'test22793ee4e4eb87e2a',),
+        _isLanguageEn ? _languageEn:_languageZh,
       ),
       builder: (context, snapshot) {
         switch(snapshot.connectionState) {

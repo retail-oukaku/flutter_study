@@ -9,42 +9,15 @@ class FileStorageManager {
     return directory.path;
   }
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/counter.txt');
-  }
-
-  Future<int> readCounter() async {
-    try {
-      final file = await _localFile;
-
-      // Read the file
-      final contents = await file.readAsString();
-
-      return int.parse(contents);
-    } on Exception catch(e) {
-      return 0;
-    }
-  }
-
-  Future<File> writeCounter(int counter) async {
-    final file = await _localFile;
-
-    // Write the file
-    return file.writeAsString('$counter');
-  }
-
-  Future<File> get _localJsonFile async {
-    final path = await _localPath;
-    return File('$path/jsonFile.txt');
-  }
-
   Future<File> writeJsonFile(String jsonString,String fileName) async {
-    final path = await _localPath;
-    final file = File('$path/$fileName.txt');
-
-    // Write the file
-    return file.writeAsString(jsonString);
+    try {
+      final path = await _localPath;
+      final file = File('$path/$fileName.txt');
+      // Write the file
+      return file.writeAsString(jsonString);
+    } on Exception catch(e) {
+      return File('');
+    }
   }
 
   Future<String> readJsonFile(String fileName) async {
