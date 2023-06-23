@@ -49,8 +49,6 @@ class _NewsApiService implements NewsApiService {
   @override
   Future<NewsModel> getSearchNewsModel(
     q,
-    page,
-    pageSize,
     sortBy,
     apiKey,
     language,
@@ -58,8 +56,6 @@ class _NewsApiService implements NewsApiService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'q': q,
-      r'page': page,
-      r'pageSize': pageSize,
       r'sortBy': sortBy,
       r'apiKey': apiKey,
       r'language': language,

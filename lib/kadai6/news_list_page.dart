@@ -17,9 +17,7 @@ class NewsListPage extends StatefulWidget {
 }
 
 class _NewsListPageState extends State<NewsListPage> {
-  final _articles = <Article>[];
-  final _pageSize = 1;
-  int _page = 1;
+  List<Article> _articles = <Article>[];
   @override
   void initState() {
     super.initState();
@@ -28,15 +26,7 @@ class _NewsListPageState extends State<NewsListPage> {
 
 
   void _refreshNews() {
-    _page = 1;
     setState(() async {
-
-    });
-  }
-
-  void loadMoreNews(){
-    _page = 1;
-    setState(() {
 
     });
   }
@@ -70,10 +60,9 @@ class _NewsListPageState extends State<NewsListPage> {
     return FutureBuilder(
       future: apiService.getSearchNewsModel(
         'Apple',
-        _page,
-        _pageSize,
         'publishedAt',
         'test22793ee4e4eb87e2a',),
+      ),
       builder: (context, snapshot) {
         switch(snapshot.connectionState) {
           case ConnectionState.done:
@@ -99,8 +88,8 @@ class _NewsListPageState extends State<NewsListPage> {
     if (model.articles == null || model.articles!.isEmpty){
       return const Text('No News Data');
     }
-
-    _articles.addAll(model.articles!);
+    _articles.clear();
+    _articles = model.articles!;
     return _posts(_articles);
   }
 

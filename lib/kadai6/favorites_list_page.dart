@@ -1,12 +1,8 @@
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_test_project/kadai6/models/article.dart';
-import 'package:flutter_web_test_project/kadai6/models/news_model.dart';
-import 'package:flutter_web_test_project/kadai6/service/news_api_service.dart';
 
-import 'utils/favorites_manager.dart';
 import 'news_detail_page.dart';
+import 'utils/favorites_manager.dart';
 
 class FavoritesListPage extends StatefulWidget {
   const FavoritesListPage({super.key});

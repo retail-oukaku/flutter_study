@@ -20,8 +20,6 @@ abstract class NewsApiService {
   @GET('/v2/everything')
   Future<NewsModel> getSearchNewsModel(
       @Query('q') String q,
-      @Query('page') int page,
-      @Query('pageSize') int pageSize,
       @Query('sortBy') String sortBy,
       @Query('apiKey') String apiKey,
       @Query('language') String language,
