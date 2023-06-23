@@ -25,7 +25,7 @@ class FavoritesManager {
 
   Future<Article?> getFavoriteArticle(String fileName) async {
     return storage.readFile(fileName).then((value) {
-      final jsonMap = json.decode(value) as  Map<String, dynamic>?;
+      final jsonMap = json.decode(value) as Map<String, dynamic>?;
       if (jsonMap == null) {
         return null;
       }
@@ -56,7 +56,7 @@ class FavoritesManager {
       favorites.add(article.title);
       await prefs.setStringList(favoritesTitles, favorites);
     }
-    await storage.writeJsonFile(article.toJson().toString(),time);
+    await storage.writeJsonFile(json.encode(article),time);
   }
 
   Future<void> deleteFavorite(Article article) async {

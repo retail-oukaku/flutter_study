@@ -6,6 +6,7 @@ import 'package:flutter_web_test_project/kadai6/models/news_model.dart';
 import 'package:flutter_web_test_project/kadai6/service/news_api_service.dart';
 
 import 'favorites_manager.dart';
+import 'news_detail_page.dart';
 
 class FavoritesListPage extends StatefulWidget {
   const FavoritesListPage({super.key});
@@ -15,20 +16,23 @@ class FavoritesListPage extends StatefulWidget {
 }
 
 class _FavoritesListPageState extends State<FavoritesListPage> {
-  final _articles = <Article>[];
-  final _pageSize = 1;
-  int _page = 1;
-
-  late List<String>? _articlesTitles ;
+  List<String>? _articlesTitles ;
   late List<String>? _articlesFileNames ;
   final FavoritesManager manager = FavoritesManager();
   @override
   void initState() {
     super.initState();
-    _articlesTitles = manager.getFavoriteTitles() as List<String>?;
-    _articlesFileNames = manager.getFavoriteFiles() as List<String>?;
-    debugPrint(_articlesTitles!.length.toString());
-    debugPrint(_articlesFileNames!.length.toString());
+    manager.getFavoriteTitles().then((value) {
+      setState(() {
+        _articlesTitles = value;
+      });
+    });
+
+    manager.getFavoriteFiles().then((value) {
+      setState(() {
+        _articlesFileNames = value;
+      });
+    });
   }
 
   @override
@@ -37,120 +41,54 @@ class _FavoritesListPageState extends State<FavoritesListPage> {
       appBar: AppBar(
         title: const Text('ニュース詳細'),
       ),
-      body: Center(
-        child: _body(),
-      ),
+      body:_buildListWidget(),
     );
   }
 
-  FutureBuilder<NewsModel> _body() {
-    final apiService = NewsApiService(Dio());
-    return FutureBuilder(
-      future: apiService.getSearchNewsModel(
-        'Apple',
-        _page,
-        _pageSize,
-        'publishedAt',
-        '22793e96e8d24f3a8993ce4e4eb87e2a',),
-      builder: (context, snapshot) {
-        switch(snapshot.connectionState) {
-          case ConnectionState.done:
-            return _dealWithData(snapshot.data);
-          case ConnectionState.active:
-          case ConnectionState.waiting:
-          case ConnectionState.none:
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-        }
+  Widget _buildListWidget()  {
+    return ListView.separated(
+      shrinkWrap: true,
+      itemCount: _articlesTitles?.length ?? 0,
+      itemBuilder: (BuildContext context, int index) {
+        return _buildListCellWidget(index, _articlesTitles![index]);
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return const Divider(height: 24,);
       },
     );
   }
 
-  Widget _dealWithData(NewsModel? model) {
-    if (model == null) {
-      return const Text('Data Supplied Is Of Wrong Type');
-    }
-    if (model.status != 'ok') {
-      return const Text('Fail to get Data');
-    }
-    if (model.articles == null || model.articles!.isEmpty){
-      return const Text('No News Data');
-    }
-
-    _articles.addAll(model.articles!);
-    return _posts(_articles);
-  }
-
-  Widget _posts(List<Article> articles) {
-    return ListView.builder(
-      itemCount: articles.length,
-      itemBuilder: (context, index) {
-        return _buildListCellWidget(articles[index], index);
-      },
-    );
-  }
-
-  Widget _buildListCellWidget(Article article, int index) {
+  Widget _buildListCellWidget(int index, String? itemText){
     return GestureDetector(
-      child: Container(
-        // margin: const EdgeInsets.all(10),
-        padding: const EdgeInsets.all(10),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            left: BorderSide(
-              width: 0,
-            ),
-            top: BorderSide(
-
-            ),
-            right: BorderSide(
-              width: 0,
-            ),
-            bottom: BorderSide(
-              width: 0,
+      onTap: () {
+        skipToDetail(itemText, index);
+      },
+      child: Row(
+        children: [
+          SizedBox(
+            width: 60,
+            child: Text(
+              (index + 1).toString(),
+              textAlign: TextAlign.center,
             ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                switch (article.urlToImage) {
-                  final avatarUrl? => Image(
-                    image: NetworkImage(avatarUrl.toString()),
-                    width: 60,
-                    height: 40,
-                  ),
-                  _ => const Icon(Icons.account_circle),
-                },
-                const SizedBox(
-                  width: 8,
-                ),
-                Expanded(
-                  child: Text(
-                    'NO${index + 1}:  ${article.title}',
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
+          Expanded (
+            child: Text(
+              itemText!,
             ),
-            Text(
-              article.description ?? '',
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
-      onTap:() {
-        debugPrint('111');
-      },
     );
   }
 
-  void _add(){
-    debugPrint('_add');
+  Future<void> skipToDetail(String title, int index) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) {
+          return NewsDetailPage(title: title ,fileName: _articlesFileNames![index],);
+        },
+      ),
+    );
   }
 }

@@ -53,6 +53,7 @@ class _NewsApiService implements NewsApiService {
     pageSize,
     sortBy,
     apiKey,
+    language,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -61,6 +62,7 @@ class _NewsApiService implements NewsApiService {
       r'pageSize': pageSize,
       r'sortBy': sortBy,
       r'apiKey': apiKey,
+      r'language': language,
     };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;

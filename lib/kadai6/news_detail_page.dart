@@ -11,11 +11,12 @@ import 'package:flutter_web_test_project/kadai6/service/news_api_service.dart';
 class NewsDetailPage extends StatefulWidget {
   const NewsDetailPage({
     super.key,
+    required this.title,
     this.article,
     this.fileName,
   }
   );
-
+  final String title;
   final Article? article;
   final String? fileName;
   @override
@@ -24,14 +25,16 @@ class NewsDetailPage extends StatefulWidget {
 
 class _NewsDetailPageState extends State<NewsDetailPage> {
   late List<String>? _favoriteArticleTitles;
-  late final Article? _article;
+  Article? _article;
   late bool _isFavoriteArticle = false;
   final FavoritesManager manager = FavoritesManager();
   @override
   void initState() {
     super.initState();
     if (widget.article != null) {
-      _article = widget.article;
+      setState(() {
+        _article = widget.article;
+      });
     } else if (widget.fileName != null) {
       manager.getFavoriteArticle(widget.fileName!).then((value) {
         setState(() {
@@ -43,7 +46,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
     manager.getFavoriteTitles().then((value) {
       _favoriteArticleTitles = value;
       setState(() {
-        _isFavoriteArticle = _favoriteArticleTitles?.contains(_article?.title) ?? false;
+        _isFavoriteArticle = _favoriteArticleTitles?.contains(widget.title) ?? false;
       });
     });
   }
@@ -97,12 +100,18 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
               fontWeight:FontWeight.bold,
             ),
           ),
+          const SizedBox(
+            height: 8,
+          ),
           switch (_article?.urlToImage) {
             final avatarUrl? => Image(
               image: NetworkImage(avatarUrl.toString()),
             ),
             _ => const Icon(Icons.account_circle),
           },
+          const SizedBox(
+            height: 8,
+          ),
           Text(
             _article?.description ?? '',
             style: const TextStyle(

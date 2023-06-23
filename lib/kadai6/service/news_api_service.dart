@@ -24,5 +24,6 @@ abstract class NewsApiService {
       @Query('pageSize') int pageSize,
       @Query('sortBy') String sortBy,
       @Query('apiKey') String apiKey,
+      @Query('language') String language,
       );
 }
