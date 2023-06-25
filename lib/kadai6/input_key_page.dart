@@ -13,7 +13,7 @@ class InputKeyPage extends StatefulWidget {
 
 class _InputKeyPageState extends State<InputKeyPage> {
   final _itemController = TextEditingController();
-  String? oldNewsKey;
+  late String oldNewsKey;
   @override
   void initState() {
     super.initState();
@@ -23,7 +23,7 @@ class _InputKeyPageState extends State<InputKeyPage> {
   Future<void> _loadKeys() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      oldNewsKey = prefs.getString(newsKey);
+      oldNewsKey = prefs.getString(newsKey) ?? '';
     });
   }
 
@@ -113,9 +113,9 @@ class _InputKeyPageState extends State<InputKeyPage> {
             textStyle: const TextStyle(fontSize: 16),
           ),
           onPressed: () {
-            _skipToRepositoryList(oldNewsKey!);
+            _skipToRepositoryList(oldNewsKey);
           },
-          child: Text(oldNewsKey ?? '',),
+          child: Text(oldNewsKey),
         ),
       ],
     );
@@ -128,6 +128,7 @@ class _InputKeyPageState extends State<InputKeyPage> {
   }
 
   Future<void> _skipToRepositoryList(String key) async {
+    hideKeyboard(context);
     await Navigator.of(context).push(
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) {
@@ -138,6 +139,9 @@ class _InputKeyPageState extends State<InputKeyPage> {
   }
 
   Future<void> _saveKey(String key) async {
+    if (key.isEmpty) {
+      return;
+    }
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(newsKey, key);
   }

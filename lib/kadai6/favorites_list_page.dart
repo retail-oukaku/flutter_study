@@ -58,7 +58,7 @@ class _FavoritesListPageState extends State<FavoritesListPage> {
     );
   }
 
-  Widget _buildListCellWidget(int index, String? itemText){
+  Widget _buildListCellWidget(int index, String itemText){
     return GestureDetector(
       onTap: () {
         skipToDetail(itemText, index);
@@ -74,7 +74,7 @@ class _FavoritesListPageState extends State<FavoritesListPage> {
           ),
           Expanded (
             child: Text(
-              itemText!,
+              itemText,
             ),
           ),
           const SizedBox(
