@@ -13,7 +13,7 @@ class InputKeyPage extends StatefulWidget {
 
 class _InputKeyPageState extends State<InputKeyPage> {
   final _itemController = TextEditingController();
-  late String oldNewsKey;
+  late String oldNewsKey = '';
   @override
   void initState() {
     super.initState();
