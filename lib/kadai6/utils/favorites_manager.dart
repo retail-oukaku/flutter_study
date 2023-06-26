@@ -74,7 +74,7 @@ class FavoritesManager {
       await prefs.setStringList(favoritesTitles, favorites);
     }
 
-    await storage.deleteJsonFile('item');
+    await storage.deleteJsonFile(article.publishedAt.toString());
   }
 
 }
