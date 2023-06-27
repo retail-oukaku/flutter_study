@@ -19,7 +19,6 @@ class NewsDetailPage extends StatefulWidget {
 }
 
 class _NewsDetailPageState extends State<NewsDetailPage> {
-  late List<String>? _favoriteArticleTitles;
   Article? _article;
   late bool _isFavoriteArticle = false;
   final FavoritesManager manager = FavoritesManager();
@@ -39,10 +38,12 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
     }
 
     manager.getFavoriteTitles().then((value) {
-      _favoriteArticleTitles = value;
+      final favoriteArticleTitles = value;
+      if (favoriteArticleTitles == null) {
+        return;
+      }
       setState(() {
-        _isFavoriteArticle =
-            _favoriteArticleTitles?.contains(widget.title) ?? false;
+        _isFavoriteArticle = favoriteArticleTitles.contains(widget.title);
       });
     });
   }
@@ -56,7 +57,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
       body:_buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: _saveFavoriteArticle,
-        tooltip: 'Increment',
+        tooltip: 'Favorite',
         child: _isFavoriteArticle ?
         const Icon(Icons.favorite) :
         const Icon(Icons.favorite_border),
@@ -65,13 +66,14 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
   }
 
   void _saveFavoriteArticle() {
-    if (_article == null) {
+    final article = _article;
+    if (article == null) {
       return;
     }
     if (_isFavoriteArticle) {
-      manager.deleteFavorite(_article!);
+      manager.deleteFavorite(article);
     } else {
-      manager.saveFavorite(_article!);
+      manager.saveFavorite(article);
     }
     setState(() {
       _isFavoriteArticle = !_isFavoriteArticle;
@@ -79,7 +81,8 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
   }
 
   Widget _buildBody() {
-    if (_article == null) {
+    final article = _article;
+    if (article == null) {
       return const Center(
         child: Text('Data Supplied Is Of Wrong Type'),
       );
@@ -90,7 +93,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
       child: ListView(
         children: [
           Text(
-            _article!.title,
+            article.title,
             style: const TextStyle(
               fontSize: 22,
               fontWeight:FontWeight.bold,
@@ -99,7 +102,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
           const SizedBox(
             height: 8,
           ),
-          switch (_article?.urlToImage) {
+          switch (article.urlToImage) {
             final avatarUrl? => Image(
               image: NetworkImage(avatarUrl.toString()),
             ),
@@ -109,13 +112,13 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
             height: 8,
           ),
           Text(
-            _article?.description ?? '',
+            article.description ?? '',
             style: const TextStyle(
               fontSize: 18,
             ),
           ),
           Text(
-            _article?.content ?? '',
+            article.content ?? '',
             style: const TextStyle(
               fontSize: 18,
             ),
@@ -126,14 +129,14 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
           Row(
             children:[
               Text(
-                _article?.publishedAt.toLocal().toString() ?? '',
+                article.publishedAt.toLocal().toString() ?? '',
                 style: const TextStyle(
                   fontWeight:FontWeight.bold,
                 ),
               ),
               Expanded(
                 child: Text(
-                  _article?.author ?? '',
+                  article.author ?? '',
                   textAlign: TextAlign.right,
                   style: const TextStyle(
                     fontWeight:FontWeight.bold,
