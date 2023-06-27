@@ -66,7 +66,7 @@ class _NewsListPageState extends State<NewsListPage> {
       ),
       onPressed: _refreshNews,
       child: Text(
-        'Change to ${_isLanguageEn ? _languageZh : _languageEn}',
+        'Switch to ${_isLanguageEn ? _languageZh : _languageEn}',
       ),
     );
   }
@@ -127,22 +127,9 @@ class _NewsListPageState extends State<NewsListPage> {
       child: Container(
         // margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.all(10),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: Colors.white,
-          border: Border(
-            left: BorderSide(
-              width: 0,
-            ),
-            top: BorderSide(
-
-            ),
-            right: BorderSide(
-              width: 0,
-            ),
-            bottom: BorderSide(
-              width: 0,
-            ),
-          ),
+          border: Border.all(),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
