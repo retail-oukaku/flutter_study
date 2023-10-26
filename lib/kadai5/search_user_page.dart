@@ -35,7 +35,7 @@ class _SearchUserPageState extends State<SearchUserPage> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => {
-              Navigator.of(context).pop('Back')
+              Navigator.of(context).pop('Back'),
             },
           ),
           title: const Text('課題５：GitHubリポジトリ'),
@@ -88,7 +88,7 @@ class _SearchUserPageState extends State<SearchUserPage> {
           },
           icon: const Icon(Icons.search),
           label: const Text('検索'),
-        )
+        ),
       ],
     );
   }

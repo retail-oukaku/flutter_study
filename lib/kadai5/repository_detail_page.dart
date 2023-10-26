@@ -37,7 +37,7 @@ class _RepositoryDetailPageState extends State<RepositoryDetailPage> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => {
-              Navigator.of(context).pop('Back')
+              Navigator.of(context).pop('Back'),
             },
           ),
           title: const Text('課題５：GitHubリポジトリ'),

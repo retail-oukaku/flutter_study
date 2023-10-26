@@ -32,7 +32,7 @@ class _StopWatchPageState extends State<StopWatchPage> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => {
-              Navigator.of(context).pop('Back')
+              Navigator.of(context).pop('Back'),
             },
           ),
           title: const Text('課題３：ストップウォッチ'),

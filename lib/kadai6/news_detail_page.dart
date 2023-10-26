@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_web_test_project/kadai6/models/article.dart';
 import 'package:flutter_web_test_project/kadai6/utils/favorites_manager.dart';
@@ -9,8 +8,7 @@ class NewsDetailPage extends StatefulWidget {
     required this.title,
     this.article,
     this.fileName,
-  }
-  );
+  });
   final String title;
   final Article? article;
   final String? fileName;
@@ -54,13 +52,13 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
       appBar: AppBar(
         title: const Text('ニュース詳細'),
       ),
-      body:_buildBody(),
+      body: _buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: _saveFavoriteArticle,
         tooltip: 'Favorite',
-        child: _isFavoriteArticle ?
-        const Icon(Icons.favorite) :
-        const Icon(Icons.favorite_border),
+        child: _isFavoriteArticle
+            ? const Icon(Icons.favorite)
+            : const Icon(Icons.favorite_border),
       ),
     );
   }
@@ -87,7 +85,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
         child: Text('Data Supplied Is Of Wrong Type'),
       );
     }
-    return Container (
+    return Container(
       padding: const EdgeInsets.all(16),
       alignment: Alignment.topCenter,
       child: ListView(
@@ -96,7 +94,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
             article.title,
             style: const TextStyle(
               fontSize: 22,
-              fontWeight:FontWeight.bold,
+              fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(
@@ -104,8 +102,8 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
           ),
           switch (article.urlToImage) {
             final avatarUrl? => Image(
-              image: NetworkImage(avatarUrl.toString()),
-            ),
+                image: NetworkImage(avatarUrl.toString()),
+              ),
             _ => const Icon(Icons.account_circle),
           },
           const SizedBox(
@@ -127,11 +125,11 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
             height: 8,
           ),
           Row(
-            children:[
+            children: [
               Text(
-                article.publishedAt.toLocal().toString() ?? '',
+                article.publishedAt.toLocal().toString(),
                 style: const TextStyle(
-                  fontWeight:FontWeight.bold,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               Expanded(
@@ -139,7 +137,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
                   article.author ?? '',
                   textAlign: TextAlign.right,
                   style: const TextStyle(
-                    fontWeight:FontWeight.bold,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

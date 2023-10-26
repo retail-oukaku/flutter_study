@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_test_project/kadai5/repository_detail_page.dart';
@@ -8,7 +7,8 @@ import '../kadai5/service/api_service.dart';
 
 class RepositoryListPage extends StatefulWidget {
   const RepositoryListPage({super.key, required this.userName});
-  @required final String userName;
+  @required
+  final String userName;
   @override
   State<RepositoryListPage> createState() => _RepositoryListPageState();
 }
@@ -31,9 +31,7 @@ class _RepositoryListPageState extends State<RepositoryListPage> {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            onPressed: () => {
-              Navigator.of(context).pop('Back')
-            },
+            onPressed: () => {Navigator.of(context).pop('Back')},
           ),
           title: const Text('課題５：GitHubリポジトリ'),
         ),
@@ -43,11 +41,12 @@ class _RepositoryListPageState extends State<RepositoryListPage> {
   }
 
   FutureBuilder<List<UserModel>> _body() {
-    final apiService = ApiService(Dio(BaseOptions(contentType: 'application/json')));
+    final apiService =
+        ApiService(Dio(BaseOptions(contentType: 'application/json')));
     return FutureBuilder(
       future: apiService.getReposList(widget.userName),
       builder: (context, snapshot) {
-        switch(snapshot.connectionState) {
+        switch (snapshot.connectionState) {
           case ConnectionState.done:
             return _dealWithData(snapshot.data);
           case ConnectionState.active:
@@ -62,12 +61,12 @@ class _RepositoryListPageState extends State<RepositoryListPage> {
   }
 
   Widget _dealWithData(List<UserModel>? modelList) {
-      if (modelList != null) {
-        return _posts(modelList);
-      } else {
-        return const Text('Data Supplied Is Of Wrong Type');
-      }
+    if (modelList != null) {
+      return _posts(modelList);
+    } else {
+      return const Text('Data Supplied Is Of Wrong Type');
     }
+  }
 
   Widget _posts(List<UserModel> users) {
     return ListView.builder(
@@ -81,6 +80,7 @@ class _RepositoryListPageState extends State<RepositoryListPage> {
   Widget _buildListCellWidget(UserModel user, int index) {
     return GestureDetector(
       child: Container(
+        color: Colors.red,
         margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -109,7 +109,7 @@ class _RepositoryListPageState extends State<RepositoryListPage> {
           ],
         ),
       ),
-      onTap:() {
+      onTap: () {
         skipToRepositoryDetail(user.name);
       },
     );
@@ -119,8 +119,10 @@ class _RepositoryListPageState extends State<RepositoryListPage> {
     await Navigator.of(context).push(
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) {
-          return RepositoryDetailPage(userName: widget.userName,
-            projectName:name,);
+          return RepositoryDetailPage(
+            userName: widget.userName,
+            projectName: name,
+          );
         },
       ),
     );
