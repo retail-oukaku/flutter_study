@@ -124,7 +124,7 @@
         <entry key="collection">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.17.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.18.0/lib" />
             </list>
           </value>
         </entry>
@@ -320,21 +320,21 @@
         <entry key="matcher">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/matcher-0.12.15/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/matcher-0.12.16/lib" />
             </list>
           </value>
         </entry>
         <entry key="material_color_utilities">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/material_color_utilities-0.2.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/material_color_utilities-0.5.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="meta">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.9.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.10.0/lib" />
             </list>
           </value>
         </entry>
@@ -404,7 +404,7 @@
         <entry key="pedantic_mono">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/pedantic_mono-1.22.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/pedantic_mono-1.23.0/lib" />
             </list>
           </value>
         </entry>
@@ -551,21 +551,21 @@
         <entry key="source_span">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/source_span-1.9.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/source_span-1.10.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="stack_trace">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stack_trace-1.11.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stack_trace-1.11.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="stream_channel">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stream_channel-2.1.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stream_channel-2.1.2/lib" />
             </list>
           </value>
         </entry>
@@ -593,7 +593,7 @@
         <entry key="test_api">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/test_api-0.5.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/test_api-0.6.1/lib" />
             </list>
           </value>
         </entry>
@@ -629,6 +629,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/watcher-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="web">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/web-0.2.1-beta/lib" />
             </list>
           </value>
         </entry>
@@ -708,7 +715,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/clock-1.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/code_builder-4.5.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.17.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.18.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/convert-3.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/crypto-3.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.5/lib" />
@@ -733,9 +740,9 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/json_serializable-6.7.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/lints-2.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/logging-1.2.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/matcher-0.12.15/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/material_color_utilities-0.2.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.9.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/matcher-0.12.16/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/material_color_utilities-0.5.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.10.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/mime-1.0.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_config-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.8.3/lib" />
@@ -745,7 +752,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.11/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.0.6/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.7/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pedantic_mono-1.22.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pedantic_mono-1.23.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/platform-3.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pool-1.5.1/lib" />

@@ -61,7 +61,7 @@ class _CountUpPageState extends State<CountUpPage> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => {
-              Navigator.of(context).pop('Back')
+              Navigator.of(context).pop('Back'),
             },
           ),
           title: const Text('課題１：カウントアップ'),

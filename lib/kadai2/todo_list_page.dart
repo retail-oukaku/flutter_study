@@ -43,7 +43,7 @@ class _TodoListPageState extends State<TodoListPage> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => {
-              Navigator.of(context).pop('Back')
+              Navigator.of(context).pop('Back'),
             },
           ),
           title: const Text('課題２：ToDoリスト'),
@@ -135,7 +135,7 @@ class _TodoListPageState extends State<TodoListPage> {
           },
           icon: const Icon(Icons.add),
           label: const Text('追加'),
-        )
+        ),
       ],
     );
   }

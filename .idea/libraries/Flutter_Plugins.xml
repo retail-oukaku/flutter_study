@@ -14,8 +14,8 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.2.2" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.2.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.2.0" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.5.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.8.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.6.0" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
