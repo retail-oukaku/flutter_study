@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'news_list_page.dart';
+
 const newsKey = 'newsKey';
+
 class InputKeyPage extends StatefulWidget {
   const InputKeyPage({super.key});
 
@@ -46,7 +47,7 @@ class _InputKeyPageState extends State<InputKeyPage> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => {
-              Navigator.of(context).pop('Back')
+              Navigator.of(context).pop('Back'),
             },
           ),
           title: const Text('課題6'),
@@ -65,7 +66,7 @@ class _InputKeyPageState extends State<InputKeyPage> {
     );
   }
 
-  Widget _buildTopWidget(){
+  Widget _buildTopWidget() {
     return Column(
       children: [
         const SizedBox(
@@ -99,7 +100,7 @@ class _InputKeyPageState extends State<InputKeyPage> {
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),
           onPressed: () {
-            if (_itemController.text.isEmpty){
+            if (_itemController.text.isEmpty) {
               return;
             }
             _skipToRepositoryList(_itemController.text);
@@ -120,6 +121,7 @@ class _InputKeyPageState extends State<InputKeyPage> {
       ],
     );
   }
+
   void hideKeyboard(BuildContext context) {
     final currentFocus = FocusScope.of(context);
     if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
@@ -132,7 +134,9 @@ class _InputKeyPageState extends State<InputKeyPage> {
     await Navigator.of(context).push(
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) {
-          return NewsListPage(newsKey: key,);
+          return NewsListPage(
+            newsKey: key,
+          );
         },
       ),
     );
@@ -145,5 +149,4 @@ class _InputKeyPageState extends State<InputKeyPage> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(newsKey, key);
   }
-
 }

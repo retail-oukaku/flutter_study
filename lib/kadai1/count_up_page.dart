@@ -1,5 +1,8 @@
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
+
+import '../kadai6/models/article.dart';
 
 class CountUpPage extends StatefulWidget {
   const CountUpPage({super.key});
@@ -14,7 +17,7 @@ class _CountUpPageState extends State<CountUpPage> {
   void _incrementCounter() {
     if (_counter < maxCounter) {
       setState(() {
-        _counter ++;
+        _counter++;
       });
     } else {
       showAlertDialog();
@@ -70,8 +73,8 @@ class _CountUpPageState extends State<CountUpPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-               const Text(
-                 'You have pushed the button this many times:',
+              const Text(
+                'You have pushed the button this many times:',
               ),
               Text(
                 '$_counter',
@@ -88,4 +91,43 @@ class _CountUpPageState extends State<CountUpPage> {
       ),
     );
   }
+
+  void testSwitch(
+    int value,
+    bool testOne,
+    Article article,
+  ) {
+    switch (value) {
+      case 0:
+        {
+          log('now is$value');
+        }
+      case 1 when testOne:
+        {
+          log('now is$value testOne is true');
+        }
+      case 2 when article is TextOneArticle && article.isTextOne:
+        {
+          log('now is$value article is TextOneArticle');
+        }
+    }
+
+    final result = switch (article) {
+      TextOneArticle(isTextOne: true) => 'isTextOne is true',
+      _ => 'default',
+    };
+
+    log(result);
+  }
+}
+
+class TextOneArticle extends Article {
+  const TextOneArticle({
+    required super.title,
+    required super.url,
+    required super.publishedAt,
+    this.isTextOne = true,
+  });
+
+  final bool isTextOne;
 }

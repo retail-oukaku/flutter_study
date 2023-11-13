@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_test_project/kadai6/models/article.dart';
@@ -52,17 +51,15 @@ class _NewsListPageState extends State<NewsListPage> {
       body: Center(
         child: _body(),
       ),
-
       floatingActionButton: _floatingActionButton(),
     );
   }
 
-  Widget _floatingActionButton(){
+  Widget _floatingActionButton() {
     return TextButton(
       style: TextButton.styleFrom(
         textStyle: const TextStyle(fontSize: 16),
         backgroundColor: Colors.blueGrey,
-
       ),
       onPressed: _refreshNews,
       child: Text(
@@ -78,10 +75,10 @@ class _NewsListPageState extends State<NewsListPage> {
         'Apple',
         'publishedAt',
         widget.newsKey,
-        _isLanguageEn ? _languageEn:_languageZh,
+        _isLanguageEn ? _languageEn : _languageZh,
       ),
       builder: (context, snapshot) {
-        switch(snapshot.connectionState) {
+        switch (snapshot.connectionState) {
           case ConnectionState.done:
             return _dealWithData(snapshot.data);
           case ConnectionState.active:
@@ -102,7 +99,7 @@ class _NewsListPageState extends State<NewsListPage> {
     if (model.status != 'ok') {
       return const Text('Fail to get Data');
     }
-    if (model.articles == null || model.articles!.isEmpty){
+    if (model.articles == null || model.articles!.isEmpty) {
       return const Text('No News Data');
     }
     _articles.clear();
@@ -138,21 +135,21 @@ class _NewsListPageState extends State<NewsListPage> {
               children: [
                 switch (article.urlToImage) {
                   final avatarUrl? => Image(
-                    image: NetworkImage(avatarUrl.toString()),
-                    width: 60,
-                    height: 40,
-                  ),
+                      image: NetworkImage(avatarUrl.toString()),
+                      width: 60,
+                      height: 40,
+                    ),
                   _ => const Icon(Icons.account_circle),
                 },
                 const SizedBox(
                   width: 8,
                 ),
                 Expanded(
-                    child: Text(
-                      article.title,
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                  child: Text(
+                    article.title,
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
@@ -169,12 +166,16 @@ class _NewsListPageState extends State<NewsListPage> {
     await Navigator.of(context).push(
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) {
-          return NewsDetailPage(title: model.title ,article: model,);
+          return NewsDetailPage(
+            title: model.title,
+            article: model,
+          );
         },
       ),
     );
   }
-  void _skipToFavoritesListPage(){
+
+  void _skipToFavoritesListPage() {
     Navigator.of(context).push(
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) {
