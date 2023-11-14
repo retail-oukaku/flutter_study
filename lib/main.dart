@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:media_kit/media_kit.dart';
 
 import 'kadai1/count_up_page.dart';
 import 'kadai2/todo_list_page.dart';
@@ -8,7 +9,11 @@ import 'kadai5/search_user_page.dart';
 import 'kadai6/input_key_page.dart';
 import 'kadai7/play_list_page.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  MediaKit.ensureInitialized();
+
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

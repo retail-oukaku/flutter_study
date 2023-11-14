@@ -1,7 +1,6 @@
 // 画面遷移をする部分のコード
 import 'package:flutter/material.dart';
-// import 'package:media_kit/media_kit.dart';
-// import 'package:media_kit_video/media_kit_video.dart';
+import 'package:media_kit/media_kit.dart';
 
 class PlayListPage extends StatefulWidget {
   const PlayListPage({super.key});
@@ -24,8 +23,9 @@ class _PlayListPageState extends State<PlayListPage> {
   ];
 
   // Create a [Player] to control playback.
-  // late final player = Player();
+  late final player = Player();
   // Create a [VideoController] to handle video output from [Player].
+  // VideoController(player);
   // late final controller = VideoController(player);
 
   @override
@@ -36,11 +36,15 @@ class _PlayListPageState extends State<PlayListPage> {
     //     'https://user-images.githubusercontent.com/28951144/229373695-22f88f13-d18f-4288-9bf1-c3e078d83722.mp4',
     //   ),
     // );
+    // player.setAudioDevice(audioDevice)
+    player.open(Media('assets/video/reissue.mp4'));
+    // player.open(Media(
+    //     'https://user-images.githubusercontent.com/28951144/229373695-22f88f13-d18f-4288-9bf1-c3e078d83722.mp4'));
   }
 
   @override
   void dispose() {
-    // player.dispose();
+    player.dispose();
     super.dispose();
   }
 
@@ -48,9 +52,9 @@ class _PlayListPageState extends State<PlayListPage> {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.width * 9.0 / 16.0,
-        child: const Text('111'),
+        width: 200,
+        height: 200,
+        child: Image.asset('assets/images/lake.jpg'),
         // Use [Video] widget to display video output.
         // child: Video(controller: controller),
       ),
