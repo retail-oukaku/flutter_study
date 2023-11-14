@@ -1,6 +1,7 @@
 // 画面遷移をする部分のコード
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
+import 'package:media_kit_video/media_kit_video.dart';
 
 class PlayListPage extends StatefulWidget {
   const PlayListPage({super.key});
@@ -26,7 +27,7 @@ class _PlayListPageState extends State<PlayListPage> {
   late final player = Player();
   // Create a [VideoController] to handle video output from [Player].
   // VideoController(player);
-  // late final controller = VideoController(player);
+  late final controller = VideoController(player);
 
   @override
   void initState() {
@@ -54,9 +55,9 @@ class _PlayListPageState extends State<PlayListPage> {
       child: SizedBox(
         width: 200,
         height: 200,
-        child: Image.asset('assets/images/lake.jpg'),
+        // child: Image.asset('assets/images/lake.jpg'),
         // Use [Video] widget to display video output.
-        // child: Video(controller: controller),
+        child: Video(controller: controller),
       ),
     );
     // return Scaffold(
