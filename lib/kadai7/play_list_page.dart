@@ -1,7 +1,6 @@
 // 画面遷移をする部分のコード
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
-import 'package:media_kit_video/media_kit_video.dart';
 
 class PlayListPage extends StatefulWidget {
   const PlayListPage({super.key});
@@ -24,10 +23,10 @@ class _PlayListPageState extends State<PlayListPage> {
   ];
 
   // Create a [Player] to control playback.
-  late final player = Player();
+  final player = Player();
   // Create a [VideoController] to handle video output from [Player].
   // VideoController(player);
-  late final controller = VideoController(player);
+  // late final controller = VideoController(player);
 
   @override
   void initState() {
@@ -38,7 +37,6 @@ class _PlayListPageState extends State<PlayListPage> {
     //   ),
     // );
     // player.setAudioDevice(audioDevice)
-    player.open(Media('assets/video/reissue.mp4'));
     // player.open(Media(
     //     'https://user-images.githubusercontent.com/28951144/229373695-22f88f13-d18f-4288-9bf1-c3e078d83722.mp4'));
   }
@@ -51,21 +49,47 @@ class _PlayListPageState extends State<PlayListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: 200,
-        height: 200,
-        // child: Image.asset('assets/images/lake.jpg'),
-        // Use [Video] widget to display video output.
-        child: Video(controller: controller),
+    return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      title: 'Flutter layout demo',
+      home: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => {
+              Navigator.of(context).pop('Back'),
+            },
+          ),
+          title: const Text('課題７：おとをPlay'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'You have pushed the button this many times:',
+              ),
+              Text(
+                '_counter',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          child: const Icon(Icons.play_circle),
+        ),
       ),
     );
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: const Text('お気に入るニュース'),
-    //   ),
-    //   body: _buildListWidget(),
-    // );
+  }
+
+  void _incrementCounter() {
+    player.open(Media('asset:///assets/audio/barcode_beep.ogg'));
   }
 
   Widget _buildListWidget() {
