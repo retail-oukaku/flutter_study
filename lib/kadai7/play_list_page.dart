@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
 
+import 'draggable_button.dart';
+
 class PlayListPage extends StatefulWidget {
   const PlayListPage({super.key});
 
@@ -10,6 +12,8 @@ class PlayListPage extends StatefulWidget {
 }
 
 class _PlayListPageState extends State<PlayListPage> {
+  final GlobalKey _parentKey = GlobalKey();
+
   final files = [
     'barcode_beep.ogg',
     'beep.wav',
@@ -76,6 +80,36 @@ class _PlayListPageState extends State<PlayListPage> {
                 '_counter',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
+              SizedBox(
+                width: 400,
+                height: 400,
+                child: Stack(
+                  key: _parentKey,
+                  children: [
+                    Container(color: Colors.cyan),
+                    const Center(
+                      child: Text(
+                        "TextWidget",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    DraggableButton(
+                      childWidget: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: const ShapeDecoration(
+                          shape: CircleBorder(),
+                          color: Colors.white,
+                        ),
+                        child: const ColoredBox(color: Colors.orange),
+                      ),
+                      initialOffset: const Offset(120, 70),
+                      // parentKey: _parentKey,
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
