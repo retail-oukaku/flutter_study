@@ -81,15 +81,15 @@ class _PlayListPageState extends State<PlayListPage> {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               SizedBox(
-                width: 400,
-                height: 400,
+                width: 300,
+                height: 300,
                 child: Stack(
                   key: _parentKey,
                   children: [
-                    Container(color: Colors.cyan),
+                    Container(color: Colors.green),
                     const Center(
                       child: Text(
-                        "TextWidget",
+                        'TextWidget',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -103,13 +103,14 @@ class _PlayListPageState extends State<PlayListPage> {
                         ),
                         child: const ColoredBox(color: Colors.orange),
                       ),
+                      parentKey: _parentKey,
                       initialOffset: const Offset(120, 70),
                       // parentKey: _parentKey,
                       onPressed: () {},
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -124,45 +125,5 @@ class _PlayListPageState extends State<PlayListPage> {
 
   void _incrementCounter() {
     player.open(Media('asset:///assets/audio/barcode_beep.ogg'));
-  }
-
-  Widget _buildListWidget() {
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: files.length,
-      itemBuilder: (BuildContext context, int index) {
-        return _buildListCellWidget(index, files[index]);
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return const Divider(
-          height: 24,
-        );
-      },
-    );
-  }
-
-  Widget _buildListCellWidget(int index, String itemText) {
-    return GestureDetector(
-      onTap: () {},
-      child: Row(
-        children: [
-          SizedBox(
-            width: 40,
-            child: Text(
-              (index + 1).toString(),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Expanded(
-            child: Text(
-              itemText,
-            ),
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-        ],
-      ),
-    );
   }
 }
