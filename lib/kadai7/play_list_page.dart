@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
 
 import 'draggable_button.dart';
+import 'list_fit_page.dart';
 
 class PlayListPage extends StatefulWidget {
   const PlayListPage({super.key});
@@ -73,6 +74,10 @@ class _PlayListPageState extends State<PlayListPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              ElevatedButton(
+                onPressed: _skipToFitListPage,
+                child: const Text('skipToListPage'),
+              ),
               const Text(
                 'You have pushed the button this many times:',
               ),
@@ -125,5 +130,15 @@ class _PlayListPageState extends State<PlayListPage> {
 
   void _incrementCounter() {
     player.open(Media('asset:///assets/audio/barcode_beep.ogg'));
+  }
+
+  void _skipToFitListPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) {
+          return const ListFitPage();
+        },
+      ),
+    );
   }
 }

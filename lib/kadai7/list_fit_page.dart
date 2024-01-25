@@ -1,5 +1,8 @@
 // 画面遷移をする部分のコード
 import 'package:flutter/material.dart';
+import 'package:flutter_web_test_project/kadai7/toast.dart';
+
+import 'custom_drop_down.dart';
 
 class ListFitPage extends StatefulWidget {
   const ListFitPage({super.key});
@@ -35,26 +38,27 @@ class _ListFitPageState extends State<ListFitPage> {
               Navigator.of(context).pop('Back'),
             },
           ),
-          title: const Text('課題７：おとをPlay'),
+          title: const Text('OverlayPortal'),
         ),
-        body: const Center(
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
+              const CustomDropDown(),
+              ElevatedButton(
+                onPressed: () {
+                  showToast(context: context, message: 'toast');
+                },
+                child: const Text('Popup'),
+              ),
+              const CustomDropDown(),
+              const Text(
+                'many times:',
               ),
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: const Icon(Icons.play_circle),
-        ),
       ),
     );
   }
-
-  void _incrementCounter() {}
 }
