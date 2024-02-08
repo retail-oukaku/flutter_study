@@ -1,5 +1,6 @@
 // 画面遷移をする部分のコード
 import 'package:flutter/material.dart';
+import 'package:flutter_web_test_project/kadai7/db_demo_page.dart';
 import 'package:flutter_web_test_project/kadai7/path_demo_page.dart';
 import 'package:media_kit/media_kit.dart';
 
@@ -83,6 +84,10 @@ class _PlayListPageState extends State<PlayListPage> {
                 onPressed: _skipToPathPage,
                 child: const Text('skipPathPage'),
               ),
+              ElevatedButton(
+                onPressed: _skipToDBPage,
+                child: const Text('skipDBPage'),
+              ),
               const Text(
                 'You have pushed the button this many times:',
               ),
@@ -152,6 +157,16 @@ class _PlayListPageState extends State<PlayListPage> {
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) {
           return const PathDemoPage();
+        },
+      ),
+    );
+  }
+
+  void _skipToDBPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) {
+          return const DbDemoPage();
         },
       ),
     );

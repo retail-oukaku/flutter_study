@@ -94,9 +94,9 @@ class _CountUpPageState extends State<CountUpPage> {
 
   void testSwitch(
     int value,
-    bool testOne,
-    Article article,
-  ) {
+    Article article, {
+    required bool testOne,
+  }) {
     switch (value) {
       case 0:
         {
