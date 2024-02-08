@@ -46,6 +46,7 @@ dependencies:
   media_kit:
   media_kit_video:
   media_kit_libs_video:
+  drift_dev: ^2.15.0
 #  media_kit_video: ^1.2.4
 #  media_kit_libs_video: ^1.0.4
 
